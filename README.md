@@ -107,7 +107,8 @@ Use the browser to make a request that transforms an EDI file to JSON:
 
 ## Postman Collection
 
-Import the `berrywave.postman.json` file into Postman to load a ready-made collection of API requests.
+Import `berrywave.postman_environment.json` and `berrywave.postman_collection.json` into Postman
+to load a ready-made collection of API requests.
 These requests mirror the endpoints described in the Swagger documentation,
 making it easy to experiment with parameters, explore different options,
 and review the responses directly within Postman.
