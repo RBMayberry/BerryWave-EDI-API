@@ -1,11 +1,11 @@
 {
 	"info": {
-		"_postman_id": "eebd120d-54dd-4908-8856-b53c882f47f4",
+		"_postman_id": "0e168087-2afc-49cf-bf84-759620d69a61",
 		"name": "BerryWave",
 		"description": "**BerryWave Software delivers a robust REST API that brings enterprise-grade EDI processing directly into your environment — no cloud uploads, no data exposure, no limits.**",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "49619909",
-		"_collection_link": "https://dark-star-883690.postman.co/workspace/BerryWave~9cd2b6f6-7a4b-4980-a040-bbe3dd6617a5/collection/49619909-eebd120d-54dd-4908-8856-b53c882f47f4?action=share&source=collection_link&creator=49619909"
+		"_collection_link": "https://dark-star-883690.postman.co/workspace/BerryWave~9cd2b6f6-7a4b-4980-a040-bbe3dd6617a5/collection/49619909-0e168087-2afc-49cf-bf84-759620d69a61?action=share&source=collection_link&creator=49619909"
 	},
 	"item": [
 		{
@@ -33,6 +33,75 @@
 							"port": "{{port}}",
 							"path": [
 								"transformFromEdi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "x12 850 from file to JSON",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "ignored",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/transformFromEdi?input=edi-samples%2F850.edi",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"transformFromEdi"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "edi-samples%2F850.edi"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "x12 850 to JSON (browser friendly)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "ISA*00*          *00*          *ZZ*SENDERID       *ZZ*RECEIVERID     *230501*0930*U*00401*000000001*0*P*>\nGS*PO*SENDERID*RECEIVERID*20230501*0930*1*X*004010\nST*850*0001\nBEG*00*SA*PO1234567**20230501*610385388\nCUR*BY*USD\nREF*DP*120\nITD*14*3*2**45**46\nDTM*001*20230510\nN1*BY*Buyer Company*9*123456789\nN3*100 Main Street\nN4*Anytown*CA*90210\nN1*ST*Supplier Company*9*987654321\nN3*500 Industrial Park\nN4*Othertown*TX*75001\nPO1*1*100*EA*12.75*CB*12345-01*MG*AcmeWidget\nPID*F****Acme Widget Model A\nQTY*21*100\nDTM*002*20230515\nCTT*1\nSE*18*0001\nGE*1*1\nIEA*1*000000001",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/transformFromEdi?input=850.edi",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"transformFromEdi"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "850.edi"
+								}
 							]
 						}
 					},
@@ -120,6 +189,87 @@
 							"port": "{{port}}",
 							"path": [
 								"transformFromEdi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "X12 850 from file to XML",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "ignored",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/transformFromEdi?input=edi-samples%2F850.edi",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"transformFromEdi"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "edi-samples%2F850.edi"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "X12 850 to XML (browser friendly)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/transformFromEdi?input=850.edi",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"transformFromEdi"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "850.edi"
+								}
 							]
 						}
 					},
@@ -225,13 +375,19 @@
 					"response": []
 				},
 				{
-					"name": "X12 850 from JSON in request body Copy",
+					"name": "X12 850 from XML in request body",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"interchanges\": [\n    {\n      \"ISA_01_AuthorizationQualifier\": \"00\",\n      \"ISA_02_AuthorizationInformation\": \"          \",\n      \"ISA_03_SecurityQualifier\": \"00\",\n      \"ISA_04_SecurityInformation\": \"          \",\n      \"ISA_05_SenderQualifier\": \"ZZ\",\n      \"ISA_06_SenderId\": \"SENDERID       \",\n      \"ISA_07_ReceiverQualifier\": \"ZZ\",\n      \"ISA_08_ReceiverId\": \"RECEIVERID     \",\n      \"ISA_09_Date\": \"230501\",\n      \"ISA_10_Time\": \"0930\",\n      \"ISA_11_StandardsId\": \"U\",\n      \"ISA_12_Version\": \"00401\",\n      \"ISA_13_InterchangeControlNumber\": \"000000001\",\n      \"ISA_14_AcknowledgmentRequested\": \"0\",\n      \"ISA_15_TestIndicator\": \"P\",\n      \"functional_groups\": [\n        {\n          \"GS_01_FunctionalIdentifierCode\": \"PO\",\n          \"GS_02_ApplicationSenderCode\": \"SENDERID\",\n          \"GS_03_ApplicationReceiverCode\": \"RECEIVERID\",\n          \"GS_04_Date\": \"20230501\",\n          \"GS_05_Time\": \"0930\",\n          \"GS_06_GroupControlNumber\": \"1\",\n          \"GS_07_ResponsibleAgencyCode\": \"X\",\n          \"GS_08_Version\": \"004010\",\n          \"transactions\": [\n            {\n              \"ST_01_TransactionSetIdentifierCode\": \"850\",\n              \"ST_02_TransactionSetControlNumber\": \"0001\",\n              \"segments\": [\n                {\n                  \"BEG_01\": \"00\",\n                  \"BEG_02\": \"SA\",\n                  \"BEG_03\": \"PO1234567\",\n                  \"BEG_05\": \"20230501\",\n                  \"BEG_06\": \"610385388\"\n                },\n                {\n                  \"CUR_01\": \"BY\",\n                  \"CUR_02\": \"USD\"\n                },\n                {\n                  \"REF_01\": \"DP\",\n                  \"REF_02\": \"120\"\n                },\n                {\n                  \"ITD_01\": \"14\",\n                  \"ITD_02\": \"3\",\n                  \"ITD_03\": \"2\",\n                  \"ITD_05\": \"45\",\n                  \"ITD_07\": \"46\"\n                },\n                {\n                  \"DTM_01\": \"001\",\n                  \"DTM_02\": \"20230510\"\n                },\n                {\n                  \"N1-4000_loop\": [\n                    {\n                      \"N1_01\": \"BY\",\n                      \"N1_02\": \"Buyer Company\",\n                      \"N1_03\": \"9\",\n                      \"N1_04\": \"123456789\"\n                    },\n                    {\n                      \"N3_01\": \"100 Main Street\"\n                    },\n                    {\n                      \"N4_01\": \"Anytown\",\n                      \"N4_02\": \"CA\",\n                      \"N4_03\": \"90210\"\n                    }\n                  ]\n                },\n                {\n                  \"N1-4000_loop\": [\n                    {\n                      \"N1_01\": \"ST\",\n                      \"N1_02\": \"Supplier Company\",\n                      \"N1_03\": \"9\",\n                      \"N1_04\": \"987654321\"\n                    },\n                    {\n                      \"N3_01\": \"500 Industrial Park\"\n                    },\n                    {\n                      \"N4_01\": \"Othertown\",\n                      \"N4_02\": \"TX\",\n                      \"N4_03\": \"75001\"\n                    }\n                  ]\n                },\n                {\n                  \"PO1-8000_loop\": [\n                    {\n                      \"PO1_01\": \"1\",\n                      \"PO1_02\": \"100\",\n                      \"PO1_03\": \"EA\",\n                      \"PO1_04\": \"12.75\",\n                      \"PO1_05\": \"CB\",\n                      \"PO1_06\": \"12345-01\",\n                      \"PO1_07\": \"MG\",\n                      \"PO1_08\": \"AcmeWidget\"\n                    },\n                    {\n                      \"PID-8150_loop\": [\n                        {\n                          \"PID_01\": \"F\",\n                          \"PID_05\": \"Acme Widget Model A\"\n                        }\n                      ]\n                    },\n                    {\n                      \"QTY-8250_loop\": [\n                        {\n                          \"QTY_01\": \"21\",\n                          \"QTY_02\": \"100\"\n                        }\n                      ]\n                    },\n                    {\n                      \"DTM_01\": \"002\",\n                      \"DTM_02\": \"20230515\"\n                    }\n                  ]\n                },\n                {\n                  \"CTT-9000_loop\": [\n                    {\n                      \"CTT_01\": \"1\"\n                    }\n                  ]\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<ediroot>\n    <interchange Standard=\"ANSI X.12\" AuthorizationQual=\"00\" Authorization=\"          \" SecurityQual=\"00\" Security=\"          \" Date=\"230501\" Time=\"0930\" StandardsId=\"U\" Version=\"00401\" Control=\"000000001\" AckRequest=\"0\" TestIndicator=\"P\" ElementDelimiter=\"*\" SubElementDelimiter=\"&gt;\" SegmentTerminator=\"&#10;\">\n        <sender>\n            <address Id=\"SENDERID       \" Qual=\"ZZ\"/>\n        </sender>\n        <receiver>\n            <address Id=\"RECEIVERID     \" Qual=\"ZZ\"/>\n        </receiver>\n        <group GroupType=\"PO\" ApplSender=\"SENDERID\" ApplReceiver=\"RECEIVERID\" Date=\"20230501\" Time=\"0930\" Control=\"1\" StandardCode=\"X\" StandardVersion=\"004010\">\n            <transaction DocType=\"850\" Name=\"Purchase Order\" Control=\"0001\">\n                <segment Id=\"BEG\">\n                    <element Id=\"BEG01\">00</element>\n                    <element Id=\"BEG02\">SA</element>\n                    <element Id=\"BEG03\">PO1234567</element>\n                    <element Id=\"BEG05\">20230501</element>\n                    <element Id=\"BEG06\">610385388</element>\n                </segment>\n                <segment Id=\"CUR\">\n                    <element Id=\"CUR01\">BY</element>\n                    <element Id=\"CUR02\">USD</element>\n                </segment>\n                <segment Id=\"REF\">\n                    <element Id=\"REF01\">DP</element>\n                    <element Id=\"REF02\">120</element>\n                </segment>\n                <segment Id=\"ITD\">\n                    <element Id=\"ITD01\">14</element>\n                    <element Id=\"ITD02\">3</element>\n                    <element Id=\"ITD03\">2</element>\n                    <element Id=\"ITD05\">45</element>\n                    <element Id=\"ITD07\">46</element>\n                </segment>\n                <segment Id=\"DTM\">\n                    <element Id=\"DTM01\">001</element>\n                    <element Id=\"DTM02\">20230510</element>\n                </segment>\n                <loop Id=\"N1-4000\">\n                    <segment Id=\"N1\">\n                        <element Id=\"N101\">BY</element>\n                        <element Id=\"N102\">Buyer Company</element>\n                        <element Id=\"N103\">9</element>\n                        <element Id=\"N104\">123456789</element>\n                    </segment>\n                    <segment Id=\"N3\">\n                        <element Id=\"N301\">100 Main Street</element>\n                    </segment>\n                    <segment Id=\"N4\">\n                        <element Id=\"N401\">Anytown</element>\n                        <element Id=\"N402\">CA</element>\n                        <element Id=\"N403\">90210</element>\n                    </segment>\n                </loop>\n                <loop Id=\"N1-4000\">\n                    <segment Id=\"N1\">\n                        <element Id=\"N101\">ST</element>\n                        <element Id=\"N102\">Supplier Company</element>\n                        <element Id=\"N103\">9</element>\n                        <element Id=\"N104\">987654321</element>\n                    </segment>\n                    <segment Id=\"N3\">\n                        <element Id=\"N301\">500 Industrial Park</element>\n                    </segment>\n                    <segment Id=\"N4\">\n                        <element Id=\"N401\">Othertown</element>\n                        <element Id=\"N402\">TX</element>\n                        <element Id=\"N403\">75001</element>\n                    </segment>\n                </loop>\n                <loop Id=\"PO1-8000\">\n                    <segment Id=\"PO1\">\n                        <element Id=\"PO101\">1</element>\n                        <element Id=\"PO102\">100</element>\n                        <element Id=\"PO103\">EA</element>\n                        <element Id=\"PO104\">12.75</element>\n                        <element Id=\"PO105\">CB</element>\n                        <element Id=\"PO106\">12345-01</element>\n                        <element Id=\"PO107\">MG</element>\n                        <element Id=\"PO108\">AcmeWidget</element>\n                    </segment>\n                    <loop Id=\"PID-8150\">\n                        <segment Id=\"PID\">\n                            <element Id=\"PID01\">F</element>\n                            <element Id=\"PID05\">Acme Widget Model A</element>\n                        </segment>\n                    </loop>\n                    <loop Id=\"QTY-8250\">\n                        <segment Id=\"QTY\">\n                            <element Id=\"QTY01\">21</element>\n                            <element Id=\"QTY02\">100</element>\n                        </segment>\n                    </loop>\n                    <segment Id=\"DTM\">\n                        <element Id=\"DTM01\">002</element>\n                        <element Id=\"DTM02\">20230515</element>\n                    </segment>\n                </loop>\n                <loop Id=\"CTT-9000\">\n                    <segment Id=\"CTT\">\n                        <element Id=\"CTT01\">1</element>\n                    </segment>\n                </loop>\n            </transaction>\n        </group>\n    </interchange>\n</ediroot>",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -329,7 +485,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}:{{port}}/acknowledge?input=850.edi",
+							"raw": "{{host}}:{{port}}/acknowledge?input=edi-samples%2F850.edi",
 							"host": [
 								"{{host}}"
 							],
@@ -340,43 +496,7 @@
 							"query": [
 								{
 									"key": "input",
-									"value": "850.edi"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Acknowledge 837 in file with 999",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"interchanges\": [\n    {\n      \"UNB_01_SyntaxIdentifier\": {\n        \"UNB_01_01_SyntaxIdentifier\": \"UNOC\",\n        \"UNB_01_02_SyntaxVersionNumber\": \"3\"\n      },\n      \"UNB_02_InterchangeSender\": {\n        \"UNB_02_01_InterchangeSenderIdentification\": \"SENDERID\",\n        \"UNB_02_02_IdentificationCodeQualifier\": \"\"\n      },\n      \"UNB_03_InterchangeReceiver\": {\n        \"UNB_03_01_InterchangeReceiverIdentification\": \"RECEIVERID\",\n        \"UNB_03_02_IdentificationCodeQualifier\": \"\"\n      },\n      \"UNB_04_DateAndTimeOfPreparation\": {\n        \"UNB_04_01_Date\": \"230101\",\n        \"UNB_04_02_Time\": \"0900\"\n      },\n      \"UNB_05_InterchangeControlReference\": \"000000001\",\n      \"transactions\": [\n        {\n          \"UNH_01_MessageReferenceNumber\": \"1\",\n          \"UNH_02_MessageIdentifier\": {\n            \"UNH_02_01_MessageType\": \"ORDERS\",\n            \"UNH_02_02_MessageVersionNumber\": \"D\",\n            \"UNH_02_03_MessageReleaseNumber\": \"96A\",\n            \"UNH_02_04_ControllingAgency\": \"UN\"\n          },\n          \"segments\": [\n            {\n              \"BGM_01\": {\n                \"BGM_01_01\": \"220\"\n              },\n              \"BGM_02\": \"PO123456\",\n              \"BGM_03\": \"9\"\n            },\n            {\n              \"DTM_01\": {\n                \"DTM_01_01\": \"137\",\n                \"DTM_01_02\": \"20230101\",\n                \"DTM_01_03\": \"102\"\n              }\n            },\n            {\n              \"NAD-0020_loop\": [\n                {\n                  \"NAD_01\": \"BY\",\n                  \"NAD_02\": {\n                    \"NAD_02_01\": \"5412345000013\",\n                    \"NAD_02_03\": \"9\"\n                  }\n                }\n              ]\n            },\n            {\n              \"NAD-0020_loop\": [\n                {\n                  \"NAD_01\": \"SU\",\n                  \"NAD_02\": {\n                    \"NAD_02_01\": \"4012345000094\",\n                    \"NAD_02_03\": \"9\"\n                  }\n                }\n              ]\n            },\n            {\n              \"CUX-0040_loop\": [\n                {\n                  \"CUX_01\": {\n                    \"CUX_01_01\": \"2\",\n                    \"CUX_01_02\": \"EUR\",\n                    \"CUX_01_03\": \"9\"\n                  }\n                }\n              ]\n            },\n            {\n              \"LIN-0500_loop\": [\n                {\n                  \"LIN_01\": \"1\",\n                  \"LIN_03\": {\n                    \"LIN_03_01\": \"1234567890123\",\n                    \"LIN_03_02\": \"EN\"\n                  }\n                },\n                {\n                  \"PIA_01\": \"1\",\n                  \"PIA_02\": {\n                    \"PIA_02_01\": \"ABC123\",\n                    \"PIA_02_02\": \"SA\"\n                  }\n                },\n                {\n                  \"IMD_01\": \"F\",\n                  \"IMD_03\": {\n                    \"IMD_03_04\": \"Widget Model A\"\n                  }\n                },\n                {\n                  \"QTY_01\": {\n                    \"QTY_01_01\": \"21\",\n                    \"QTY_01_02\": \"100\"\n                  }\n                },\n                {\n                  \"PRI-0520_loop\": [\n                    {\n                      \"PRI_01\": {\n                        \"PRI_01_01\": \"AAA\",\n                        \"PRI_01_02\": \"12.50\"\n                      }\n                    }\n                  ]\n                },\n                {\n                  \"RFF-0530_loop\": [\n                    {\n                      \"RFF_01\": {\n                        \"RFF_01_01\": \"ON\",\n                        \"RFF_01_02\": \"PO-REF-01\"\n                      }\n                    },\n                    {\n                      \"DTM_01\": {\n                        \"DTM_01_01\": \"2\",\n                        \"DTM_01_02\": \"20230115\",\n                        \"DTM_01_03\": \"102\"\n                      }\n                    }\n                  ]\n                }\n              ]\n            },\n            {\n              \"LIN-0500_loop\": [\n                {\n                  \"LIN_01\": \"2\",\n                  \"LIN_03\": {\n                    \"LIN_03_01\": \"9876543210987\",\n                    \"LIN_03_02\": \"EN\"\n                  }\n                },\n                {\n                  \"PIA_01\": \"1\",\n                  \"PIA_02\": {\n                    \"PIA_02_01\": \"XYZ789\",\n                    \"PIA_02_02\": \"SA\"\n                  }\n                },\n                {\n                  \"IMD_01\": \"F\",\n                  \"IMD_03\": {\n                    \"IMD_03_04\": \"Widget Model B\"\n                  }\n                },\n                {\n                  \"QTY_01\": {\n                    \"QTY_01_01\": \"21\",\n                    \"QTY_01_02\": \"50\"\n                  }\n                },\n                {\n                  \"PRI-0520_loop\": [\n                    {\n                      \"PRI_01\": {\n                        \"PRI_01_01\": \"AAA\",\n                        \"PRI_01_02\": \"24.99\"\n                      }\n                    }\n                  ]\n                },\n                {\n                  \"RFF-0530_loop\": [\n                    {\n                      \"RFF_01\": {\n                        \"RFF_01_01\": \"ON\",\n                        \"RFF_01_02\": \"PO-REF-02\"\n                      }\n                    },\n                    {\n                      \"DTM_01\": {\n                        \"DTM_01_01\": \"2\",\n                        \"DTM_01_02\": \"20230120\",\n                        \"DTM_01_03\": \"102\"\n                      }\n                    }\n                  ]\n                }\n              ]\n            },\n            {\n              \"UNS_01\": \"S\"\n            },\n            {\n              \"CNT_01\": {\n                \"CNT_01_01\": \"2\",\n                \"CNT_01_02\": \"2\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}:{{port}}/acknowledge?input=837.edi",
-							"host": [
-								"{{host}}"
-							],
-							"port": "{{port}}",
-							"path": [
-								"acknowledge"
-							],
-							"query": [
-								{
-									"key": "input",
-									"value": "837.edi"
+									"value": "edi-samples%2F850.edi"
 								}
 							]
 						}
@@ -401,7 +521,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}:{{port}}/acknowledge?input=/Users/scottmayberry/Projects/BerryWave/berrywave/berrywave.mock/src/main/resources/ORDERS.edi",
+							"raw": "{{host}}:{{port}}/acknowledge?input=edi-samples%2FORDERS.edi",
 							"host": [
 								"{{host}}"
 							],
@@ -412,7 +532,7 @@
 							"query": [
 								{
 									"key": "input",
-									"value": "/Users/scottmayberry/Projects/BerryWave/berrywave/berrywave.mock/src/main/resources/ORDERS.edi"
+									"value": "edi-samples%2FORDERS.edi"
 								}
 							]
 						}
@@ -440,7 +560,7 @@
 							"raw": "ignored"
 						},
 						"url": {
-							"raw": "{{host}}:{{port}}/scan?input=837.edi",
+							"raw": "{{host}}:{{port}}/scan?input=edi-samples%2F837.edi",
 							"host": [
 								"{{host}}"
 							],
@@ -451,7 +571,7 @@
 							"query": [
 								{
 									"key": "input",
-									"value": "837.edi"
+									"value": "edi-samples%2F837.edi"
 								}
 							]
 						}
