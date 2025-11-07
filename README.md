@@ -50,17 +50,19 @@ that comes with the licensed version, making it easy to explore the API without 
 
 ### Downloading the Project
 
-*This need to change to focus on ZIP downloading instead*
 
-It is recommended to **clone the Git repository** rather than downloading a ZIP archive, as the ZIP may not include the required JAR file correctly.
+You may either **clone the Git repository** or **download the ZIP archive**, 
+Whichever you prefer.
 
 Once downloaded, the application's **home directory** contains:
 
-- **Runnable JAR:** `berrywave.playground-1.0.0.jar`
+- **Runnable JAR:** `berrywave.playground-1.0.0.jar` 
 - **Configuration file:** `configuration.properties`
 - **Postman assets:** `postman` directory containing `postman_collection.json` and `berrywave.postman_environment.json`
 - **EDI models:** `model-directory` with sample EDI models
 - **EDI samples:** `edi-samples` with sample EDI files
+
+(note: if you are experiencing issues with the .jar file when downloading the ZIP archive, you may alternatively download it [here](https://drive.google.com/file/d/1rijOwZlvFH3sVZbdtA1ZIhPXPoqMmFlM/view?usp=drive_link))
 
 ### Running the Application
 
