@@ -1,11 +1,11 @@
 {
 	"info": {
-		"_postman_id": "5f8a88d0-a3d5-45bb-92da-ba3d465d0d8b",
+		"_postman_id": "eebd120d-54dd-4908-8856-b53c882f47f4",
 		"name": "BerryWave",
 		"description": "**BerryWave Software delivers a robust REST API that brings enterprise-grade EDI processing directly into your environment — no cloud uploads, no data exposure, no limits.**",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "49619909",
-		"_collection_link": "https://dark-star-883690.postman.co/workspace/BerryWave~9cd2b6f6-7a4b-4980-a040-bbe3dd6617a5/collection/38253601-5f8a88d0-a3d5-45bb-92da-ba3d465d0d8b?action=share&source=collection_link&creator=49619909"
+		"_collection_link": "https://dark-star-883690.postman.co/workspace/BerryWave~9cd2b6f6-7a4b-4980-a040-bbe3dd6617a5/collection/49619909-eebd120d-54dd-4908-8856-b53c882f47f4?action=share&source=collection_link&creator=49619909"
 	},
 	"item": [
 		{
@@ -26,11 +26,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/transformFromEdi",
+							"raw": "{{host}}:{{port}}/transformFromEdi",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
+							"port": "{{port}}",
 							"path": [
 								"transformFromEdi"
 							]
@@ -53,11 +53,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/transformFromEdi",
+							"raw": "{{host}}:{{port}}/transformFromEdi",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
+							"port": "{{port}}",
 							"path": [
 								"transformFromEdi"
 							]
@@ -80,11 +80,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/transformFromEdi",
+							"raw": "{{host}}:{{port}}/transformFromEdi",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
+							"port": "{{port}}",
 							"path": [
 								"transformFromEdi"
 							]
@@ -113,11 +113,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/transformFromEdi",
+							"raw": "{{host}}:{{port}}/transformFromEdi",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
+							"port": "{{port}}",
 							"path": [
 								"transformFromEdi"
 							]
@@ -146,11 +146,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/transformFromEdi",
+							"raw": "{{host}}:{{port}}/transformFromEdi",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
+							"port": "{{port}}",
 							"path": [
 								"transformFromEdi"
 							]
@@ -179,11 +179,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/transformFromEdi",
+							"raw": "{{host}}:{{port}}/transformFromEdi",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
+							"port": "{{port}}",
 							"path": [
 								"transformFromEdi"
 							]
@@ -212,11 +212,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/transformToEdi",
+							"raw": "{{host}}:{{port}}/transformToEdi",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
+							"port": "{{port}}",
 							"path": [
 								"transformToEdi"
 							]
@@ -239,11 +239,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/transformToEdi",
+							"raw": "{{host}}:{{port}}/transformToEdi",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
+							"port": "{{port}}",
 							"path": [
 								"transformToEdi"
 							]
@@ -266,11 +266,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/transformToEdi",
+							"raw": "{{host}}:{{port}}/transformToEdi",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
+							"port": "{{port}}",
 							"path": [
 								"transformToEdi"
 							]
@@ -299,11 +299,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/acknowledge",
+							"raw": "{{host}}:{{port}}/acknowledge",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
+							"port": "{{port}}",
 							"path": [
 								"acknowledge"
 							]
@@ -329,11 +329,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/acknowledge?input=850.edi",
+							"raw": "{{host}}:{{port}}/acknowledge?input=850.edi",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
+							"port": "{{port}}",
 							"path": [
 								"acknowledge"
 							],
@@ -365,11 +365,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/acknowledge?input=837.edi",
+							"raw": "{{host}}:{{port}}/acknowledge?input=837.edi",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
+							"port": "{{port}}",
 							"path": [
 								"acknowledge"
 							],
@@ -401,11 +401,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/acknowledge?input=/Users/scottmayberry/Projects/BerryWave/berrywave/berrywave.mock/src/main/resources/ORDERS.edi",
+							"raw": "{{host}}:{{port}}/acknowledge?input=/Users/scottmayberry/Projects/BerryWave/berrywave/berrywave.mock/src/main/resources/ORDERS.edi",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
+							"port": "{{port}}",
 							"path": [
 								"acknowledge"
 							],
@@ -440,11 +440,11 @@
 							"raw": "ignored"
 						},
 						"url": {
-							"raw": "localhost:8080/scan?input=837.edi",
+							"raw": "{{host}}:{{port}}/scan?input=837.edi",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
+							"port": "{{port}}",
 							"path": [
 								"scan"
 							],
@@ -474,11 +474,11 @@
 							"raw": "ISA^00^          ^00^          ^ZZ^1556150        ^12^5088942073     ^100903^0143^U^00401^500009740^0^P^|~\nGS^PO^007941230^8145^20100903^0143^653^X^005010~\nST^850^8620~\nBEG^00^SA^16683^^20100902~\nN1^ST^OWENS & MINOR - HOUSTON^92^056551~\nPO1^001^2^CA^74.8692^UM^VC^130^IN^0565000130~\nPO1^002^3^CA^95.5^UM^VC^0565TRN1184^IN^0565TRN1184~\nCTT^2~\nSE^7^8620~\nGE^1^653~\nIEA^1^500009740~\n"
 						},
 						"url": {
-							"raw": "localhost:8080/scan",
+							"raw": "{{host}}:{{port}}/scan",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
+							"port": "{{port}}",
 							"path": [
 								"scan"
 							]
@@ -502,11 +502,11 @@
 							"raw": "ISA^00^          ^00^          ^ZZ^1556150        ^12^5088942073     ^100903^0143^U^00401^500009740^0^P^|~\nGS^PO^007941230^8145^20100903^0143^653^X^005010~\nST^850^8620~\nBEG^00^SA^16683^^20100902~\nN1^ST^OWENS & MINOR - HOUSTON^92^056551~\nPO1^001^2^CA^74.8692^UM^VC^130^IN^0565000130~\nPO1^002^3^CA^95.5^UM^VC^0565TRN1184^IN^0565TRN1184~\nCTT^2~\nSE^77^8620~\nGE^1^653~\nIEA^1^500009740~\n"
 						},
 						"url": {
-							"raw": "localhost:8080/scan",
+							"raw": "{{host}}:{{port}}/scan",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
+							"port": "{{port}}",
 							"path": [
 								"scan"
 							]
@@ -535,11 +535,11 @@
 							"raw": "ISA^00^          ^00^          ^ZZ^1556150        ^12^5088942073     ^100903^0143^U^00401^500009740^0^P^|~\nGS^PO^007941230^8145^20100903^0143^653^X^005010~\nST^850^8620~\nBEG^00^SA^16683^^20100902~\nN1^ST^OWENS & MINOR - HOUSTON^92^056551~\nPO1^001^2^CA^74.8692^UM^VC^130^IN^0565000130~\nPO1^002^3^CA^95.5^UM^VC^0565TRN1184^IN^0565TRN1184~\nCTT^2~\nSE^7^8620~\nGE^1^653~\nIEA^1^500009740~\n"
 						},
 						"url": {
-							"raw": "localhost:8080/split?input=%2Fmultiple-850.edi&namingPattern=transaction-0000.edi&outputDirectory=%2Ftmp%2Fsplit",
+							"raw": "{{host}}:{{port}}/split?input=%2Fmultiple-850.edi&namingPattern=transaction-0000.edi&outputDirectory=%2Ftmp%2Fsplit",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
+							"port": "{{port}}",
 							"path": [
 								"split"
 							],
@@ -601,11 +601,11 @@
 							"raw": "ignored"
 						},
 						"url": {
-							"raw": "localhost:8080/validate?input=%2Ftmp%2Fmultiple-850.ed",
+							"raw": "{{host}}:{{port}}/validate?input=%2Ftmp%2Fmultiple-850.ed",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
+							"port": "{{port}}",
 							"path": [
 								"validate"
 							],
@@ -635,11 +635,11 @@
 							"raw": "ISA^00^          ^00^          ^ZZ^1556150        ^12^5088942073     ^100903^0143^U^00401^500009740^0^P^|~\nGS^PO^007941230^8145^20100903^0143^653^X^005010~\nST^850^8620~\nBEG^00^SA^16683^^20100902~\nN1^ST^OWENS & MINOR - HOUSTON^92^056551~\nPO1^001^2^CA^74.8692^UM^VC^130^IN^0565000130~\nPO1^002^3^CA^95.5^UM^VC^0565TRN1184^IN^0565TRN1184~\nCTT^2~\nSE^7^8620~\nGE^1^653~\nIEA^1^500009740~\n"
 						},
 						"url": {
-							"raw": "localhost:8080/validate",
+							"raw": "{{host}}:{{port}}/validate",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
+							"port": "{{port}}",
 							"path": [
 								"validate"
 							]
@@ -660,11 +660,11 @@
 							"raw": "ignored"
 						},
 						"url": {
-							"raw": "localhost:8080/validate?input=%2Ftmp%2Fmultiple-850.ed",
+							"raw": "{{host}}:{{port}}/validate?input=%2Ftmp%2Fmultiple-850.ed",
 							"host": [
-								"localhost"
+								"{{host}}"
 							],
-							"port": "8080",
+							"port": "{{port}}",
 							"path": [
 								"validate"
 							],
