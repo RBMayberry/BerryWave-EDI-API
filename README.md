@@ -50,6 +50,8 @@ that comes with the licensed version, making it easy to explore the API without 
 
 ### Downloading the Project
 
+*This need to change to focus on ZIP downloading instead*
+
 It is recommended to **clone the Git repository** rather than downloading a ZIP archive, as the ZIP may not include the required JAR file correctly.
 
 Once downloaded, the application's **home directory** contains:
@@ -68,6 +70,8 @@ Once downloaded, the application's **home directory** contains:
 
 By default, the application listens on port 8080.
 To use a different port, edit configuration.properties.
+
+*We can now start the application on Mac without command line! Probably could Windows too.*
 
 Start the application with:
 
