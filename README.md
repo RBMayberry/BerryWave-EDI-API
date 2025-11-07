@@ -52,7 +52,7 @@ that comes with the licensed version, making it easy to explore the API without 
 
 
 You may either **clone the Git repository** or **download the ZIP archive**, 
-Whichever you prefer.
+whichever you prefer.
 
 Once downloaded, the application's **home directory** contains:
 
@@ -62,7 +62,8 @@ Once downloaded, the application's **home directory** contains:
 - **EDI models:** `model-directory` with sample EDI models
 - **EDI samples:** `edi-samples` with sample EDI files
 
-(note: if you are experiencing issues with the .jar file when downloading the ZIP archive, you may alternatively download it [here](https://drive.google.com/file/d/1rijOwZlvFH3sVZbdtA1ZIhPXPoqMmFlM/view?usp=drive_link))
+(note: if you are experiencing issues with the .jar file when downloading the ZIP archive, you can also download it [here](https://drive.google.com/file/d/1k9N8gp_AcdKK4ayk4MS6RfeZnqJJHBjh/view?usp=drive_link))
+
 
 ### Running the Application
 
