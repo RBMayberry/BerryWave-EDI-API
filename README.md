@@ -73,8 +73,6 @@ Once downloaded, the application's **home directory** contains:
 By default, the application listens on port 8080.
 To use a different port, edit configuration.properties.
 
-*We can now start the application on Mac without command line! Probably could Windows too.*
-
 Start the application with:
 
 `java -jar berrywave.playground-1.0.0.jar`
