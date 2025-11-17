@@ -48,6 +48,10 @@ This project provides a runnable "playground" copy of the application. It includ
 and uses pre-defined responses to simulate EDI processing. You can use the same Postman collection
 that comes with the licensed version, making it easy to explore the API without a trial license.
 
+### API Documentation
+
+[View OpenAPI documentation](https://rbmayberry.github.io/BerryWave-EDI-API/)
+
 ### Downloading the Project
 
 
