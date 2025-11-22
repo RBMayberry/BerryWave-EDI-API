@@ -1,10 +1,10 @@
+![Banner image](images/github-header-banner.png)
+
 [Quick Start](#quick-start) |
 [Postman Collection](#postman-collection) |
 [Next Steps](#next-steps) |
 [Technical Notes](#technical-notes)
 
-<h1 style="text-align:center; margin-bottom:0;">BerryWave Software</h1>
-<h2 style="text-align:center; margin-top:0;">API for EDI</h2>
 
 BerryWave Software delivers a robust REST API that brings enterprise-grade EDI processing
 directly into your environment — no cloud uploads, no data exposure, no limits.
