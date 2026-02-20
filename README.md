@@ -48,10 +48,6 @@ This project provides a runnable "playground" copy of the application. It includ
 and uses pre-defined responses to simulate EDI processing. You can use the same Postman collection
 that comes with the licensed version, making it easy to explore the API without a trial license.
 
-### API Documentation
-
-[View OpenAPI documentation](https://rbmayberry.github.io/BerryWave-EDI-API/)
-
 ### Downloading the Project
 
 
@@ -60,14 +56,11 @@ whichever you prefer.
 
 Once downloaded, the application's **home directory** contains:
 
-- **Runnable JAR:** `berrywave.playground-1.0.0.jar` 
-- **Configuration file:** `configuration.properties`
+- **Runnable JAR:** `berrywave.playground-1.0.5.jar` 
+- **Configuration file:** `application.yml`
 - **Postman assets:** `postman` directory containing `postman_collection.json` and `berrywave.postman_environment.json`
 - **EDI models:** `model-directory` with sample EDI models
 - **EDI samples:** `edi-samples` with sample EDI files
-
-(note: if you are experiencing issues with the .jar file when downloading the ZIP archive, you can also download it [here](https://drive.google.com/file/d/1k9N8gp_AcdKK4ayk4MS6RfeZnqJJHBjh/view?usp=drive_link))
-
 
 ### Running the Application
 
@@ -76,17 +69,17 @@ Once downloaded, the application's **home directory** contains:
 `java --version`
 
 By default, the application listens on port 8080.
-To use a different port, edit configuration.properties.
+To use a different port, edit application.yml.
 
 Start the application with:
 
-`java -jar berrywave.playground-1.0.0.jar`
+`java -jar berrywave.playground-1.0.5.jar`
 
 ### Home page
 
 Visit the home page in your browser:
 
-`http://localhost:8080`
+`http://localhost:8080/berrywave/v1`
 
 The home page shows license information and provides quick links to key features and documentation.
 
@@ -94,7 +87,7 @@ The home page shows license information and provides quick links to key features
 
 Access the API documentation:
 
-`http://localhost:8080/docs`
+`http://localhost:8080/berrywave/v1/api`
 
 This documentation includes all endpoints, parameters, and response examples.
 
@@ -102,7 +95,7 @@ This documentation includes all endpoints, parameters, and response examples.
 
 Use the browser to make a request that transforms an EDI file to JSON:
 
-`http://localhost:8080/transformFromEdi&input=edi-samples%2F850.edi`
+`http://localhost:8080/berrywave/v1/transformFromEdi&input=edi-samples%2F850.edi`
 
 * The 850.edi file is in the edi-samples directory. Fully-qualified paths are supported with "%2F" representing "/".
 * In the playground, responses are simulated (canned) rather than generated from the EDI input.
@@ -129,8 +122,8 @@ and review the responses directly within Postman.
 
 ## Technical Notes
 
-- **Network:** Listens on port 8080 by default (configurable).
-  No other ports are opened, and no outbound connections are made.
+- **Network:** Listens for HTTP on port 8080 by default (configurable).
+  No other ports are opened, and no outbound connections are made. HTTPS support is available. 
   Works well behind restrictive firewalls.
 
 - **Scalability & Availability:** Multiple instances can run on different servers for load balancing and fault
