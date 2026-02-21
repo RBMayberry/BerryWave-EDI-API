@@ -50,13 +50,14 @@ that comes with the licensed version, making it easy to explore the API without 
 
 ### Downloading the Project
 
-
-You may either **clone the Git repository** or **download the ZIP archive**, 
-whichever you prefer.
+You can download the project either by
+* cloning the git repository, or 
+* downloading as a ZIP archive. If the unzipped project contains only a placeholder for the critical jar file,
+  you may use GitHub to download the jar file individualy.
 
 Once downloaded, the application's **home directory** contains:
 
-- **Runnable JAR:** `berrywave.playground-1.0.5.jar` 
+- **Runnable JAR:** `berrywave.api-1.0.5.jar` 
 - **Configuration file:** `application.yml`
 - **Postman assets:** `postman` directory containing `postman_collection.json` and `berrywave.postman_environment.json`
 - **EDI models:** `model-directory` with sample EDI models
@@ -73,7 +74,7 @@ To use a different port, edit application.yml.
 
 Start the application with:
 
-`java -jar berrywave.playground-1.0.5.jar`
+`java -jar berrywave.api-1.0.5.jar`
 
 ### Home page
 
