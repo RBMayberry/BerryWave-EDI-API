@@ -7,7 +7,7 @@
 
 > ---
 > ## ⚡ What's New
-> - **Version 1.1.0** – Now includes [JSONata Integration](docs/JSONata-Integration.md)
+> - **Version 1.1.0** – Now includes [JSONata Integration](docs/jsonata-integration.md)
 > - **Performance Metrics** – Available in the API via `GET .../metrics`
 > ---
 
