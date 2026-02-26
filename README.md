@@ -105,7 +105,7 @@ Use the browser to make a request that transforms an EDI file to JSON:
 http://localhost:8080/berrywave/v1/transformFromEdi&input=sample.edi
 ```
 
-* The 850.edi file is in the edi-samples directory. Fully-qualified paths are supported with "%2F" representing "/".
+* Fully-qualified paths are supported with "%2F" representing "/".
 * In the playground, responses are simulated (canned) rather than generated from the EDI input.
 * For more variations and examples, refer to the Swagger documentation and Postman collection.
 
