@@ -83,7 +83,9 @@ Start the application with:
 
 Visit the home page in your browser:
 
-`http://localhost:8080/berrywave/v1`
+```
+http://localhost:8080/berrywave/v1
+```
 
 The home page shows license information and provides quick links to key features and documentation.
 
@@ -91,7 +93,9 @@ The home page shows license information and provides quick links to key features
 
 Access the API documentation:
 
-`http://localhost:8080/berrywave/v1/api`
+```
+http://localhost:8080/berrywave/v1/api
+```
 
 This documentation includes all endpoints, parameters, and response examples.
 
@@ -99,7 +103,9 @@ This documentation includes all endpoints, parameters, and response examples.
 
 Use the browser to make a request that transforms an EDI file to JSON:
 
-`http://localhost:8080/berrywave/v1/transformFromEdi&input=edi-samples%2F850.edi`
+```
+http://localhost:8080/berrywave/v1/transformFromEdi&input=edi-samples%2F850.edi
+```
 
 * The 850.edi file is in the edi-samples directory. Fully-qualified paths are supported with "%2F" representing "/".
 * In the playground, responses are simulated (canned) rather than generated from the EDI input.
