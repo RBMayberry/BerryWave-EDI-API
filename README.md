@@ -57,7 +57,7 @@ You can download the project either by
 
 Once downloaded, the application's **home directory** contains:
 
-- **Runnable JAR:** `berrywave.api-<version>.jar` 
+- **Runnable JAR:** `berrywave.api-1.1.0.jar` (or later version) 
 - **Configuration file:** `application.yml`
 - **Postman assets:** `postman` directory containing `postman_collection.json` and `berrywave.postman_environment.json`
 - **EDI models:** `model-directory` with sample EDI models
@@ -77,14 +77,13 @@ To use a different port, edit application.yml.
 
 Start the application with:
 
-```sh
-### Replace <version> with the actual version number  
-java -jar berrywave.api-<version>.jar
+```sh 
+java -jar berrywave.api-1.1.0.jar
 ````
 
 ### Home page
 
-Visit the home page in your browser:
+Visit the home page with your browser:
 
 ```
 http://localhost:8080/berrywave/v1
@@ -92,22 +91,18 @@ http://localhost:8080/berrywave/v1
 
 The home page shows license information and provides quick links to key features and documentation.
 
-### OpenAPI/Swagger documentation
-
-Access the API documentation:
+### API documentation
 
 ```
 http://localhost:8080/berrywave/v1/api
 ```
-
-This documentation includes all endpoints, parameters, and response examples.
 
 ### Your first EDI request
 
 Use the browser to make a request that transforms an EDI file to JSON:
 
 ```
-http://localhost:8080/berrywave/v1/transformFromEdi&input=edi-samples%2F850.edi
+http://localhost:8080/berrywave/v1/transformFromEdi&input=sample.edi
 ```
 
 * The 850.edi file is in the edi-samples directory. Fully-qualified paths are supported with "%2F" representing "/".
