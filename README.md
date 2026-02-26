@@ -57,7 +57,7 @@ You can download the project either by
 
 Once downloaded, the application's **home directory** contains:
 
-- **Runnable JAR:** `berrywave.api-1.0.5.jar` 
+- **Runnable JAR:** `berrywave.api-{version}.jar` 
 - **Configuration file:** `application.yml`
 - **Postman assets:** `postman` directory containing `postman_collection.json` and `berrywave.postman_environment.json`
 - **EDI models:** `model-directory` with sample EDI models
@@ -74,7 +74,7 @@ To use a different port, edit application.yml.
 
 Start the application with:
 
-`java -jar berrywave.api-1.0.5.jar`
+`java -jar berrywave.api-{version}.jar`
 
 ### Home page
 
