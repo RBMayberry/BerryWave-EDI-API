@@ -5,11 +5,17 @@
 [Next Steps](#next-steps) |
 [Technical Notes](#technical-notes)
 
+> ---
+> ## ⚡ What's New
+> - **Version 1.1.0** – Now includes JSONata-based transformations!
+> - **Performance Metrics** – Available via the API
+> ---
 
 BerryWave Software delivers a robust REST API that brings enterprise-grade EDI processing
 directly into your environment — no cloud uploads, no data exposure, no limits.
 
 <https://www.berrywave-edi.com/>
+
 
 ### Seamless EDI Integration
 
