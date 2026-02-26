@@ -1,49 +1,56 @@
 # JSONata Integration
 
-BerryWave provides support for JSON transformation using **JSONata**,
+BerryWave provides support for JSON transformation using **JSONata**,  
 a lightweight and expressive query and transformation language for JSON data.
 
-The API includes entry points for two use cases:
-- EDI is converted to JSON, and in the same API request that JSON is then transformed
-  using a JSONata query and returned as the JSON response.
-- JSON -- unrelated to EDI -- is transformed
-  using a JSONata query and returned as the JSON response.
-  This feature is fully functional in the free Playground version provided with this project
-  as well as with a licensed version.
+The API exposes endpoints that allow JSONata expressions to be applied in two primary scenarios:
+
+1. **EDI → JSON → JSONata → JSON response**  
+   An incoming EDI document is converted to BerryWave’s internal JSON representation and immediately transformed using a registered JSONata query.
+
+2. **JSON → JSONata → JSON response**  
+   Arbitrary JSON (unrelated to EDI) is transformed using a registered JSONata query.
+
+The second use case is fully functional in the free Playground version included with this project, as well as in licensed deployments.
+
+For readability, all endpoints in this document omit the base path `http://host:port/berrywave/v1/`
 
 ---
 
-## EDI transformation via JSONata
+# EDI Transformation via JSONata
 
-We will use a basic example to illustrate the use of a JSONata query for EDI transformation.
-In this dcoument, we will omit the `http://host:port/berrywave/v1/` prefix on the URLs.
+In a standard EDI-to-JSON conversion, the endpoint is:
+```code
+POST /transformFromEdi
+```
 
-Instead of
+To apply a JSONata transformation in the same request, use:
+```code
+POST /transformFromEdi/jsonata?query=<query-name>
 ```
-/transformFromEdi
-```
-used for typical EDI to JSON conversions,
-we will use
+Where:
 
-```
-/transformFromEdi/jsonata?query=<query-name>
-```
-where <query-name> is the name of a JSONata query that you have previously defined.
+- `<query-name>` is the name of a previously registered JSONata query.
+- The request body contains the EDI payload.
+- The response body contains the evaluated JSONata result.
 
-For example, a JSONata query named `interchangeControlNumber` that extracts the interchange control number
-from an X12 interchange looks like
+### Example
+
+Assume a JSONata query named:
+`interchangeControlNumber` 
+with the following JSONata expression:
 
 ```
 {
     "isaControlNumber": interchanges.ISA_13_InterchangeControlNumber
 }
 ```
-and when used in
+A request to
 ```
-/transformFromEdi/jsonata?query=interchangeControlNumber
+POST /transformFromEdi/jsonata?query=interchangeControlNumber
 ```
 
-results in returned JSON like this:
+returns a response similar to:
 ```
 {
     "isaControlNumber": "000000001"
