@@ -7,8 +7,8 @@
 
 > ---
 > ## ⚡ What's New
-> - **Version 1.1.0** – Now includes JSONata-based transformations!
-> - **Performance Metrics** – Available via the API
+> - **Version 1.1.0** – Now includes [JSONata Integration](docs/JSONata-Integration.md)
+> - **Performance Metrics** – Available in the API via `GET .../metrics`
 > ---
 
 BerryWave Software delivers a robust REST API that brings enterprise-grade EDI processing
