@@ -67,7 +67,11 @@ Once downloaded, the application's **home directory** contains:
 
 **Prerequisite:** Java 21 or later. Verify with:
 
-`java --version`
+<pre>
+```bash
+java --version
+```
+</pre>
 
 By default, the application listens on port 8080.
 To use a different port, edit application.yml.
