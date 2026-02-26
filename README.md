@@ -78,7 +78,8 @@ To use a different port, edit application.yml.
 Start the application with:
 
 ```sh
-java -jar berrywave.api-`<version>`.jar
+### Replace <version> with the actual version number  
+java -jar berrywave.api-<version>.jar
 ````
 
 ### Home page
