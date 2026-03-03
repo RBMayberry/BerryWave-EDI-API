@@ -1,9 +1,18 @@
 ![Banner image](images/github-header-banner.png)
-
 [Quick Start](#quick-start) |
 [Postman Collection](#postman-collection) |
 [Next Steps](#next-steps) |
 [Technical Notes](#technical-notes)
+
+## 🎬 30-Second Demo — X12 850 → JSON
+
+[![Watch the demo](https://img.youtube.com/vi/VQ53DLARAiY/maxresdefault.jpg)](https://youtu.be/VQ53DLARAiY)
+
+### What the demo shows
+
+• POSTing an X12 850 Purchase Order  
+• Real-time conversion to canonical JSON  
+• Clean REST response ready for downstream workflows
 
 > ---
 > ## ⚡ What's New
