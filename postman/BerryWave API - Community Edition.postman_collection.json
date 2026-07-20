@@ -1,0 +1,966 @@
+{
+  "info": {
+    "_postman_id": "030c44f1-196f-4ef7-a245-290bdebff8c0",
+    "name": "BerryWave API - Community Edition",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49619909",
+    "_collection_link": "https://go.postman.co/collection/49619909-030c44f1-196f-4ef7-a245-290bdebff8c0?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Supply Chain",
+      "item": [
+        {
+          "name": "850 to JSON",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response is JSON\", function () {",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "",
+                  "pm.test(\"Body is not empty\", function () {",
+                  "    pm.expect(pm.response.text().length).to.be.above(0);",
+                  "});",
+                  "",
+                  "pm.test(\"Response contains 1000A\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"PO1234567\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "ISA*00*          *00*          *ZZ*SENDERID       *ZZ*RECEIVERID     *230501*0930*U*00401*000000001*0*P*>\nGS*PO*SENDERID*RECEIVERID*20230501*0930*1*X*004010\nST*850*0001\nBEG*00*SA*PO1234567**20230501*610385388\nCUR*BY*USD\nREF*DP*120\nITD*14*3*2**45**46\nDTM*001*20230510\nN1*BY*Buyer Company*9*123456789\nN3*100 Main Street\nN4*Anytown*CA*90210\nN1*ST*Supplier Company*9*987654321\nN3*500 Industrial Park\nN4*Othertown*TX*75001\nPO1*1*100*EA*12.75*CB*12345-01*MG*AcmeWidget\nPID*F****Acme Widget Model A\nQTY*21*100\nDTM*002*20230515\nCTT*1\nSE*18*0001\nGE*1*1\nIEA*1*000000001",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transformFromEdi",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transformFromEdi"
+              ]
+            },
+            "description": "<img src=\"https://content.pstmn.io/0cb86e33-3dca-4f3c-8c84-99d99f34e719/bG9nby5wbmc=\" alt=\"EDi%20to%20JSON\" height=\"101\" width=\"100\">"
+          },
+          "response": []
+        },
+        {
+          "name": "JSON to 850 (Enterprise Edition)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 403\", function () {",
+                  "    pm.response.to.have.status(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Not in Community Edition\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"not included in the Community Edition\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"interchanges\": [\n        {\n            \"ISA_01_AuthorizationQualifier\": \"00\",\n            \"ISA_02_AuthorizationInformation\": \"          \",\n            \"ISA_03_SecurityQualifier\": \"00\",\n            \"ISA_04_SecurityInformation\": \"          \",\n            \"ISA_05_SenderQualifier\": \"ZZ\",\n            \"ISA_06_SenderId\": \"SENDERID       \",\n            \"ISA_07_ReceiverQualifier\": \"ZZ\",\n            \"ISA_08_ReceiverId\": \"RECEIVERID     \",\n            \"ISA_09_Date\": \"230501\",\n            \"ISA_10_Time\": \"0930\",\n            \"ISA_11_StandardsId\": \"U\",\n            \"ISA_12_Version\": \"00401\",\n            \"ISA_13_InterchangeControlNumber\": \"000000001\",\n            \"ISA_14_AcknowledgmentRequested\": \"0\",\n            \"ISA_15_TestIndicator\": \"P\",\n            \"functional_groups\": [\n                {\n                    \"GS_01_FunctionalIdentifierCode\": \"PO\",\n                    \"GS_02_ApplicationSenderCode\": \"SENDERID\",\n                    \"GS_03_ApplicationReceiverCode\": \"RECEIVERID\",\n                    \"GS_04_Date\": \"20230501\",\n                    \"GS_05_Time\": \"0930\",\n                    \"GS_06_GroupControlNumber\": \"1\",\n                    \"GS_07_ResponsibleAgencyCode\": \"X\",\n                    \"GS_08_Version\": \"004010\",\n                    \"transactions\": [\n                        {\n                            \"ST_01_TransactionSetIdentifierCode\": \"850\",\n                            \"ST_02_TransactionSetControlNumber\": \"0001\",\n                            \"segments\": [\n                                {\n                                    \"BEG_01\": \"00\",\n                                    \"BEG_02\": \"SA\",\n                                    \"BEG_03\": \"PO1234567\",\n                                    \"BEG_05\": \"20230501\",\n                                    \"BEG_06\": \"610385388\"\n                                },\n                                {\n                                    \"CUR_01\": \"BY\",\n                                    \"CUR_02\": \"USD\"\n                                },\n                                {\n                                    \"REF_01\": \"DP\",\n                                    \"REF_02\": \"120\"\n                                },\n                                {\n                                    \"ITD_01\": \"14\",\n                                    \"ITD_02\": \"3\",\n                                    \"ITD_03\": \"2\",\n                                    \"ITD_05\": \"45\",\n                                    \"ITD_07\": \"46\"\n                                },\n                                {\n                                    \"DTM_01\": \"001\",\n                                    \"DTM_02\": \"20230510\"\n                                },\n                                {\n                                    \"N1-850_loop\": [\n                                        {\n                                            \"N1_01\": \"BY\",\n                                            \"N1_02\": \"Buyer Company\",\n                                            \"N1_03\": \"9\",\n                                            \"N1_04\": \"123456789\"\n                                        },\n                                        {\n                                            \"N3_01\": \"100 Main Street\"\n                                        },\n                                        {\n                                            \"N4_01\": \"Anytown\",\n                                            \"N4_02\": \"CA\",\n                                            \"N4_03\": \"90210\"\n                                        }\n                                    ]\n                                },\n                                {\n                                    \"N1-850_loop\": [\n                                        {\n                                            \"N1_01\": \"ST\",\n                                            \"N1_02\": \"Supplier Company\",\n                                            \"N1_03\": \"9\",\n                                            \"N1_04\": \"987654321\"\n                                        },\n                                        {\n                                            \"N3_01\": \"500 Industrial Park\"\n                                        },\n                                        {\n                                            \"N4_01\": \"Othertown\",\n                                            \"N4_02\": \"TX\",\n                                            \"N4_03\": \"75001\"\n                                        }\n                                    ]\n                                },\n                                {\n                                    \"PO1-850_loop\": [\n                                        {\n                                            \"PO1_01\": \"1\",\n                                            \"PO1_02\": \"100\",\n                                            \"PO1_03\": \"EA\",\n                                            \"PO1_04\": \"12.75\",\n                                            \"PO1_05\": \"CB\",\n                                            \"PO1_06\": \"12345-01\",\n                                            \"PO1_07\": \"MG\",\n                                            \"PO1_08\": \"AcmeWidget\"\n                                        },\n                                        {\n                                            \"PID-PO1-850_loop\": [\n                                                {\n                                                    \"PID_01\": \"F\",\n                                                    \"PID_05\": \"Acme Widget Model A\"\n                                                }\n                                            ]\n                                        },\n                                        {\n                                            \"QTY-PO1-850_loop\": [\n                                                {\n                                                    \"QTY_01\": \"21\",\n                                                    \"QTY_02\": \"100\"\n                                                }\n                                            ]\n                                        },\n                                        {\n                                            \"DTM_01\": \"002\",\n                                            \"DTM_02\": \"20230515\"\n                                        }\n                                    ]\n                                },\n                                {\n                                    \"CTT-850_loop\": [\n                                        {\n                                            \"CTT_01\": \"1\"\n                                        }\n                                    ]\n                                }\n                            ]\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transformToEdi",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transformToEdi"
+              ]
+            },
+            "description": "<img src=\"https://content.pstmn.io/0cb86e33-3dca-4f3c-8c84-99d99f34e719/bG9nby5wbmc=\" alt=\"EDi%20to%20JSON\" height=\"101\" width=\"100\">"
+          },
+          "response": []
+        },
+        {
+          "name": "Acknowledge 850 with 997",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Content is EDI\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\"))",
+                  "        .to.include(\"text/plain\");",
+                  "});",
+                  "",
+                  "pm.test(\"Body is not empty\", function () {",
+                  "    pm.expect(pm.response.text().length).to.be.above(0);",
+                  "});",
+                  "",
+                  "pm.test(\"Response ISA..\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"ISA\");",
+                  "});",
+                  "",
+                  "pm.test(\"Response ST*855\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"ST*997*\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "ISA*00*          *00*          *ZZ*SENDERID       *ZZ*RECEIVERID     *230501*0930*U*00401*000000001*0*P*>\nGS*PO*SENDERID*RECEIVERID*20230501*0930*1*X*004010\nST*850*0001\nBEG*00*SA*PO1234567**20230501*610385388\nCUR*BY*USD\nREF*DP*120\nITD*14*3*2**45**46\nDTM*001*20230510\nN1*BY*Buyer Company*9*123456789\nN3*100 Main Street\nN4*Anytown*CA*90210\nN1*ST*Supplier Company*9*987654321\nN3*500 Industrial Park\nN4*Othertown*TX*75001\nPO1*1*100*EA*12.75*CB*12345-01*MG*AcmeWidget\nPID*F****Acme Widget Model A\nQTY*21*100\nDTM*002*20230515\nCTT*1\nSE*18*0001\nGE*1*1\nIEA*1*000000001",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/acknowledge",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "acknowledge"
+              ]
+            },
+            "description": "<img src=\"https://content.pstmn.io/0cb86e33-3dca-4f3c-8c84-99d99f34e719/bG9nby5wbmc=\" alt=\"EDi%20to%20JSON\" height=\"101\" width=\"100\">"
+          },
+          "response": []
+        },
+        {
+          "name": "Validate 850 (Enterprise Edition)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 403\", function () {",
+                  "    pm.response.to.have.status(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Not in Community Edition\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"not included in the Community Edition\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "ISA*00*          *00*          *ZZ*SENDERID       *ZZ*RECEIVERID     *230501*0930*U*00401*000000001*0*P*>\nGS*PO*SENDERID*RECEIVERID*20230501*0930*1*X*004010\nST*850*0001\nBEG*00*SA*PO1234567**20230501*610385388\nCUR*BY*USD\nREF*DP*120\nITD*14*3*2**45**46\nDTM*001*20230510\nN1*BY*Buyer Company*9*123456789\nN3*100 Main Street\nN4*Anytown*CA*90210\nN1*ST*Supplier Company*9*987654321\nN3*500 Industrial Park\nN4*Othertown*TX*75001\nPO1*1*100*EA*12.75*CB*12345-01*MG*AcmeWidget\nPID*F****Acme Widget Model A\nQTY*21*100\nDTM*002*20230515\nCTT*1\nSE*18*0001\nGE*1*1\nIEA*1*000000001",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/validate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "validate"
+              ]
+            },
+            "description": "<img src=\"https://content.pstmn.io/0cb86e33-3dca-4f3c-8c84-99d99f34e719/bG9nby5wbmc=\" alt=\"EDi%20to%20JSON\" height=\"101\" width=\"100\">"
+          },
+          "response": []
+        },
+        {
+          "name": "Respond to 850 with 855",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Content is EDI\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\"))",
+                  "        .to.include(\"text/plain\");",
+                  "});",
+                  "",
+                  "pm.test(\"Body is not empty\", function () {",
+                  "    pm.expect(pm.response.text().length).to.be.above(0);",
+                  "});",
+                  "",
+                  "pm.test(\"Response ISA..\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"ISA\");",
+                  "});",
+                  "",
+                  "pm.test(\"Response ST*855\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"ST*855*\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "ISA*00*          *00*          *ZZ*SENDERID       *ZZ*RECEIVERID     *230501*0930*U*00401*000000001*0*P*>\nGS*PO*SENDERID*RECEIVERID*20230501*0930*1*X*004010\nST*850*0001\nBEG*00*SA*PO1234567**20230501*610385388\nCUR*BY*USD\nREF*DP*120\nITD*14*3*2**45**46\nDTM*001*20230510\nN1*BY*Buyer Company*9*123456789\nN3*100 Main Street\nN4*Anytown*CA*90210\nN1*ST*Supplier Company*9*987654321\nN3*500 Industrial Park\nN4*Othertown*TX*75001\nPO1*1*100*EA*12.75*CB*12345-01*MG*AcmeWidget\nPID*F****Acme Widget Model A\nQTY*21*100\nDTM*002*20230515\nCTT*1\nSE*18*0001\nGE*1*1\nIEA*1*000000001",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/respondTo850/855",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "respondTo850",
+                "855"
+              ]
+            },
+            "description": "<img src=\"https://content.pstmn.io/0cb86e33-3dca-4f3c-8c84-99d99f34e719/bG9nby5wbmc=\" alt=\"EDi%20to%20JSON\" height=\"101\" width=\"100\">"
+          },
+          "response": []
+        },
+        {
+          "name": "Respond to 850+JSON with 855 (Enterprise Edition)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 403\", function () {",
+                  "    pm.response.to.have.status(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Not in Community Edition\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"not included in the Community Edition\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "ISA*00*          *00*          *ZZ*SENDERID       *ZZ*RECEIVERID     *230501*0930*U*00401*000000001*0*P*>\nGS*PO*SENDERID*RECEIVERID*20230501*0930*1*X*004010\nST*850*0001\nBEG*00*SA*PO1234567**20230501*610385388\nCUR*BY*USD\nREF*DP*120\nITD*14*3*2**45**46\nDTM*001*20230510\nN1*BY*Buyer Company*9*123456789\nN3*100 Main Street\nN4*Anytown*CA*90210\nN1*ST*Supplier Company*9*987654321\nN3*500 Industrial Park\nN4*Othertown*TX*75001\nPO1*1*100*EA*12.75*CB*12345-01*MG*AcmeWidget\nPID*F****Acme Widget Model A\nQTY*21*100\nDTM*002*20230515\nCTT*1\nSE*18*0001\nGE*1*1\nIEA*1*000000001",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/respondTo837/277?supplementalData=claimStatus.json",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "respondTo837",
+                "277"
+              ],
+              "query": [
+                {
+                  "key": "supplementalData",
+                  "value": "claimStatus.json"
+                }
+              ]
+            },
+            "description": "<img src=\"https://content.pstmn.io/0cb86e33-3dca-4f3c-8c84-99d99f34e719/bG9nby5wbmc=\" alt=\"EDi%20to%20JSON\" height=\"101\" width=\"100\">"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Healthcare",
+      "item": [
+        {
+          "name": "837 to JSON",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response is JSON\", function () {",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "",
+                  "pm.test(\"Body is not empty\", function () {",
+                  "    pm.expect(pm.response.text().length).to.be.above(0);",
+                  "});",
+                  "",
+                  "pm.test(\"Response contains 1000A\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"1000A\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "ISA*00*          *00*          *ZZ*SENDERID       *ZZ*RECEIVERID     *260513*0715*^*00501*000000001*0*T*:~\nGS*HC*SENDERID*RECEIVERID*20260513*0715*1*X*005010X222A1~\nST*837*0001*005010X222A1~\nBHT*0019*00*BATCH1001*20260513*0715*CH~\nNM1*41*2*SAMPLE BILLING SERVICE*****46*123456789~\nPER*IC*EDI SUPPORT*TE*8005551212~\nNM1*40*2*SAMPLE PAYER*****46*999999999~\nHL*1**20*1~\nNM1*85*2*SAMPLE CLINIC*****XX*1234567893~\nN3*100 MAIN STREET~\nN4*NASHVILLE*TN*37201~\nREF*EI*123456789~\nHL*2*1*22*0~\nSBR*P*18*******CI~\nNM1*IL*1*DOE*JOHN****MI*ABC12345~\nN3*200 OAK AVENUE~\nN4*NASHVILLE*TN*37202~\nDMG*D8*19800101*M~\nCLM*CLAIM0001*125.00***11:B:1*Y*A*Y*I~\nHI*ABK:J1099~\nNM1*82*1*SMITH*JANE****XX*1111111111~\nLX*1~\nSV1*HC:99213*75*UN*1***1~\nDTP*472*D8*20260510~\nCLM*CLAIM0002*240.00***11:B:1*Y*A*Y*I~\nHI*ABK:M545~\nNM1*82*1*SMITH*JANE****XX*1111111111~\nLX*1~\nSV1*HC:93000*240*UN*1***1~\nDTP*472*D8*20260511~\nSE*29*0001~\nST*837*0002*005010X222A1~\nBHT*0019*00*BATCH1002*20260513*0720*CH~\nNM1*41*2*SAMPLE BILLING SERVICE*****46*123456789~\nPER*IC*EDI SUPPORT*TE*8005551212~\nNM1*40*2*SAMPLE PAYER*****46*999999999~\nHL*1**20*1~\nNM1*85*2*SAMPLE CLINIC*****XX*1234567893~\nN3*100 MAIN STREET~\nN4*NASHVILLE*TN*37201~\nREF*EI*123456789~\nHL*2*1*22*0~\nSBR*P*18*******CI~\nNM1*IL*1*DOE*JANE****MI*XYZ67890~\nN3*500 MAPLE DRIVE~\nN4*FRANKLIN*TN*37064~\nDMG*D8*19751212*F~\nCLM*CLAIM0003*88.00***11:B:1*Y*A*Y*I~\nHI*ABK:R101~\nNM1*82*1*ADAMS*ROBERT****XX*2222222222~\nLX*1~\nSV1*HC:87070*88*UN*1***1~\nDTP*472*D8*20260512~\nCLM*CLAIM0004*315.00***11:B:1*Y*A*Y*I~\nHI*ABK:E119~\nNM1*82*1*ADAMS*ROBERT****XX*2222222222~\nLX*1~\nSV1*HC:99214*150*UN*1***1~\nSV1*HC:80053*165*UN*1***1~\nDTP*472*D8*20260512~\nSE*30*0002~\nGE*2*1~\nIEA*1*000000001~",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transformFromEdi",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transformFromEdi"
+              ]
+            },
+            "description": "<img src=\"https://content.pstmn.io/0cb86e33-3dca-4f3c-8c84-99d99f34e719/bG9nby5wbmc=\" alt=\"EDi%20to%20JSON\" height=\"101\" width=\"100\">"
+          },
+          "response": []
+        },
+        {
+          "name": "JSON to 837 (Enterprise Edition)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 403\", function () {",
+                  "    pm.response.to.have.status(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Not in Community Edition\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"not included in the Community Edition\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"interchanges\": [\n        {\n            \"ISA_01_AuthorizationQualifier\": \"00\",\n            \"ISA_02_AuthorizationInformation\": \"          \",\n            \"ISA_03_SecurityQualifier\": \"00\",\n            \"ISA_04_SecurityInformation\": \"          \",\n            \"ISA_05_SenderQualifier\": \"ZZ\",\n            \"ISA_06_SenderId\": \"SENDERID       \",\n            \"ISA_07_ReceiverQualifier\": \"ZZ\",\n            \"ISA_08_ReceiverId\": \"RECEIVERID     \",\n            \"ISA_09_Date\": \"260513\",\n            \"ISA_10_Time\": \"0715\",\n            \"ISA_11_RepetitionSeparator\": \"^\",\n            \"ISA_12_Version\": \"00501\",\n            \"ISA_13_InterchangeControlNumber\": \"000000001\",\n            \"ISA_14_AcknowledgmentRequested\": \"0\",\n            \"ISA_15_TestIndicator\": \"T\",\n            \"functional_groups\": [\n                {\n                    \"GS_01_FunctionalIdentifierCode\": \"HC\",\n                    \"GS_02_ApplicationSenderCode\": \"SENDERID\",\n                    \"GS_03_ApplicationReceiverCode\": \"RECEIVERID\",\n                    \"GS_04_Date\": \"20260513\",\n                    \"GS_05_Time\": \"0715\",\n                    \"GS_06_GroupControlNumber\": \"1\",\n                    \"GS_07_ResponsibleAgencyCode\": \"X\",\n                    \"GS_08_Version\": \"005010X222A1\",\n                    \"transactions\": [\n                        {\n                            \"ST_01_TransactionSetIdentifierCode\": \"837\",\n                            \"ST_02_TransactionSetControlNumber\": \"0001\",\n                            \"ST_03_ImplementationConventionReference\": \"005010X222A1\",\n                            \"segments\": [\n                                {\n                                    \"BHT_01\": \"0019\",\n                                    \"BHT_02\": \"00\",\n                                    \"BHT_03\": \"BATCH1001\",\n                                    \"BHT_04\": \"20260513\",\n                                    \"BHT_05\": \"0715\",\n                                    \"BHT_06\": \"CH\"\n                                },\n                                {\n                                    \"NM1_InformationReceiverName_4-1000A_loop\": [\n                                        {\n                                            \"NM1_01\": \"41\",\n                                            \"NM1_02\": \"2\",\n                                            \"NM1_03\": \"SAMPLE BILLING SERVICE\",\n                                            \"NM1_08\": \"46\",\n                                            \"NM1_09\": \"123456789\"\n                                        },\n                                        {\n                                            \"PER_01\": \"IC\",\n                                            \"PER_02\": \"EDI SUPPORT\",\n                                            \"PER_03\": \"TE\",\n                                            \"PER_04\": \"8005551212\"\n                                        }\n                                    ]\n                                },\n                                {\n                                    \"NM1_InformationReceiverName_4-1000A_loop\": [\n                                        {\n                                            \"NM1_01\": \"40\",\n                                            \"NM1_02\": \"2\",\n                                            \"NM1_03\": \"SAMPLE PAYER\",\n                                            \"NM1_08\": \"46\",\n                                            \"NM1_09\": \"999999999\"\n                                        }\n                                    ]\n                                },\n                                {\n                                    \"HL_BillingProviderHierarchicalLevel-2000AA_loop\": [\n                                        {\n                                            \"HL_01\": \"1\",\n                                            \"HL_03\": \"20\",\n                                            \"HL_04\": \"1\"\n                                        },\n                                        {\n                                            \"NM1_BillingProviderName_2-2010AA_loop\": [\n                                                {\n                                                    \"NM1_01\": \"85\",\n                                                    \"NM1_02\": \"2\",\n                                                    \"NM1_03\": \"SAMPLE CLINIC\",\n                                                    \"NM1_08\": \"XX\",\n                                                    \"NM1_09\": \"1234567893\"\n                                                },\n                                                {\n                                                    \"N3_01\": \"100 MAIN STREET\"\n                                                },\n                                                {\n                                                    \"N4_01\": \"NASHVILLE\",\n                                                    \"N4_02\": \"TN\",\n                                                    \"N4_03\": \"37201\"\n                                                },\n                                                {\n                                                    \"REF_01\": \"EI\",\n                                                    \"REF_02\": \"123456789\"\n                                                }\n                                            ]\n                                        },\n                                        {\n                                            \"HL_BillingProviderHierarchicalLevel-2000AB_loop\": [\n                                                {\n                                                    \"HL_01\": \"2\",\n                                                    \"HL_02\": \"1\",\n                                                    \"HL_03\": \"22\",\n                                                    \"HL_04\": \"0\"\n                                                },\n                                                {\n                                                    \"SBR_01\": \"P\",\n                                                    \"SBR_02\": \"18\",\n                                                    \"SBR_09\": \"CI\"\n                                                },\n                                                {\n                                                    \"NM1_BillingProviderName_2-2010AA_loop\": [\n                                                        {\n                                                            \"NM1_01\": \"IL\",\n                                                            \"NM1_02\": \"1\",\n                                                            \"NM1_03\": \"DOE\",\n                                                            \"NM1_04\": \"JOHN\",\n                                                            \"NM1_08\": \"MI\",\n                                                            \"NM1_09\": \"ABC12345\"\n                                                        },\n                                                        {\n                                                            \"N3_01\": \"200 OAK AVENUE\"\n                                                        },\n                                                        {\n                                                            \"N4_01\": \"NASHVILLE\",\n                                                            \"N4_02\": \"TN\",\n                                                            \"N4_03\": \"37202\"\n                                                        },\n                                                        {\n                                                            \"DMG_01\": \"D8\",\n                                                            \"DMG_02\": \"19800101\",\n                                                            \"DMG_03\": \"M\"\n                                                        },\n                                                        {\n                                                            \"CLM_01\": \"CLAIM0001\",\n                                                            \"CLM_02\": \"125.00\",\n                                                            \"CLM_05\": {\n                                                                \"CLM_05_01\": \"11\",\n                                                                \"CLM_05_02\": \"B\",\n                                                                \"CLM_05_03\": \"1\"\n                                                            },\n                                                            \"CLM_06\": \"Y\",\n                                                            \"CLM_07\": \"A\",\n                                                            \"CLM_08\": \"Y\",\n                                                            \"CLM_09\": \"I\"\n                                                        },\n                                                        {\n                                                            \"HI_01\": {\n                                                                \"HI_01_01\": \"ABK\",\n                                                                \"HI_01_02\": \"J1099\"\n                                                            }\n                                                        }\n                                                    ]\n                                                },\n                                                {\n                                                    \"NM1_BillingProviderName_2-2010AA_loop\": [\n                                                        {\n                                                            \"NM1_01\": \"82\",\n                                                            \"NM1_02\": \"1\",\n                                                            \"NM1_03\": \"SMITH\",\n                                                            \"NM1_04\": \"JANE\",\n                                                            \"NM1_08\": \"XX\",\n                                                            \"NM1_09\": \"1111111111\"\n                                                        },\n                                                        {\n                                                            \"LX_01\": \"1\"\n                                                        },\n                                                        {\n                                                            \"SV1_01\": {\n                                                                \"SV1_01_01\": \"HC\",\n                                                                \"SV1_01_02\": \"99213\"\n                                                            },\n                                                            \"SV1_02\": \"75\",\n                                                            \"SV1_03\": \"UN\",\n                                                            \"SV1_04\": \"1\",\n                                                            \"SV1_07\": {\n                                                                \"SV1_07_01\": \"1\"\n                                                            }\n                                                        },\n                                                        {\n                                                            \"DTP_01\": \"472\",\n                                                            \"DTP_02\": \"D8\",\n                                                            \"DTP_03\": \"20260510\"\n                                                        },\n                                                        {\n                                                            \"CLM_01\": \"CLAIM0002\",\n                                                            \"CLM_02\": \"240.00\",\n                                                            \"CLM_05\": {\n                                                                \"CLM_05_01\": \"11\",\n                                                                \"CLM_05_02\": \"B\",\n                                                                \"CLM_05_03\": \"1\"\n                                                            },\n                                                            \"CLM_06\": \"Y\",\n                                                            \"CLM_07\": \"A\",\n                                                            \"CLM_08\": \"Y\",\n                                                            \"CLM_09\": \"I\"\n                                                        },\n                                                        {\n                                                            \"HI_01\": {\n                                                                \"HI_01_01\": \"ABK\",\n                                                                \"HI_01_02\": \"M545\"\n                                                            }\n                                                        }\n                                                    ]\n                                                },\n                                                {\n                                                    \"NM1_BillingProviderName_2-2010AA_loop\": [\n                                                        {\n                                                            \"NM1_01\": \"82\",\n                                                            \"NM1_02\": \"1\",\n                                                            \"NM1_03\": \"SMITH\",\n                                                            \"NM1_04\": \"JANE\",\n                                                            \"NM1_08\": \"XX\",\n                                                            \"NM1_09\": \"1111111111\"\n                                                        },\n                                                        {\n                                                            \"LX_01\": \"1\"\n                                                        },\n                                                        {\n                                                            \"SV1_01\": {\n                                                                \"SV1_01_01\": \"HC\",\n                                                                \"SV1_01_02\": \"93000\"\n                                                            },\n                                                            \"SV1_02\": \"240\",\n                                                            \"SV1_03\": \"UN\",\n                                                            \"SV1_04\": \"1\",\n                                                            \"SV1_07\": {\n                                                                \"SV1_07_01\": \"1\"\n                                                            }\n                                                        },\n                                                        {\n                                                            \"DTP_01\": \"472\",\n                                                            \"DTP_02\": \"D8\",\n                                                            \"DTP_03\": \"20260511\"\n                                                        }\n                                                    ]\n                                                }\n                                            ]\n                                        }\n                                    ]\n                                }\n                            ]\n                        },\n                        {\n                            \"ST_01_TransactionSetIdentifierCode\": \"837\",\n                            \"ST_02_TransactionSetControlNumber\": \"0002\",\n                            \"ST_03_ImplementationConventionReference\": \"005010X222A1\",\n                            \"segments\": [\n                                {\n                                    \"BHT_01\": \"0019\",\n                                    \"BHT_02\": \"00\",\n                                    \"BHT_03\": \"BATCH1002\",\n                                    \"BHT_04\": \"20260513\",\n                                    \"BHT_05\": \"0720\",\n                                    \"BHT_06\": \"CH\"\n                                },\n                                {\n                                    \"NM1_InformationReceiverName_4-1000A_loop\": [\n                                        {\n                                            \"NM1_01\": \"41\",\n                                            \"NM1_02\": \"2\",\n                                            \"NM1_03\": \"SAMPLE BILLING SERVICE\",\n                                            \"NM1_08\": \"46\",\n                                            \"NM1_09\": \"123456789\"\n                                        },\n                                        {\n                                            \"PER_01\": \"IC\",\n                                            \"PER_02\": \"EDI SUPPORT\",\n                                            \"PER_03\": \"TE\",\n                                            \"PER_04\": \"8005551212\"\n                                        }\n                                    ]\n                                },\n                                {\n                                    \"NM1_InformationReceiverName_4-1000A_loop\": [\n                                        {\n                                            \"NM1_01\": \"40\",\n                                            \"NM1_02\": \"2\",\n                                            \"NM1_03\": \"SAMPLE PAYER\",\n                                            \"NM1_08\": \"46\",\n                                            \"NM1_09\": \"999999999\"\n                                        }\n                                    ]\n                                },\n                                {\n                                    \"HL_BillingProviderHierarchicalLevel-2000AA_loop\": [\n                                        {\n                                            \"HL_01\": \"1\",\n                                            \"HL_03\": \"20\",\n                                            \"HL_04\": \"1\"\n                                        },\n                                        {\n                                            \"NM1_BillingProviderName_2-2010AA_loop\": [\n                                                {\n                                                    \"NM1_01\": \"85\",\n                                                    \"NM1_02\": \"2\",\n                                                    \"NM1_03\": \"SAMPLE CLINIC\",\n                                                    \"NM1_08\": \"XX\",\n                                                    \"NM1_09\": \"1234567893\"\n                                                },\n                                                {\n                                                    \"N3_01\": \"100 MAIN STREET\"\n                                                },\n                                                {\n                                                    \"N4_01\": \"NASHVILLE\",\n                                                    \"N4_02\": \"TN\",\n                                                    \"N4_03\": \"37201\"\n                                                },\n                                                {\n                                                    \"REF_01\": \"EI\",\n                                                    \"REF_02\": \"123456789\"\n                                                }\n                                            ]\n                                        },\n                                        {\n                                            \"HL_BillingProviderHierarchicalLevel-2000AB_loop\": [\n                                                {\n                                                    \"HL_01\": \"2\",\n                                                    \"HL_02\": \"1\",\n                                                    \"HL_03\": \"22\",\n                                                    \"HL_04\": \"0\"\n                                                },\n                                                {\n                                                    \"SBR_01\": \"P\",\n                                                    \"SBR_02\": \"18\",\n                                                    \"SBR_09\": \"CI\"\n                                                },\n                                                {\n                                                    \"NM1_BillingProviderName_2-2010AA_loop\": [\n                                                        {\n                                                            \"NM1_01\": \"IL\",\n                                                            \"NM1_02\": \"1\",\n                                                            \"NM1_03\": \"DOE\",\n                                                            \"NM1_04\": \"JANE\",\n                                                            \"NM1_08\": \"MI\",\n                                                            \"NM1_09\": \"XYZ67890\"\n                                                        },\n                                                        {\n                                                            \"N3_01\": \"500 MAPLE DRIVE\"\n                                                        },\n                                                        {\n                                                            \"N4_01\": \"FRANKLIN\",\n                                                            \"N4_02\": \"TN\",\n                                                            \"N4_03\": \"37064\"\n                                                        },\n                                                        {\n                                                            \"DMG_01\": \"D8\",\n                                                            \"DMG_02\": \"19751212\",\n                                                            \"DMG_03\": \"F\"\n                                                        },\n                                                        {\n                                                            \"CLM_01\": \"CLAIM0003\",\n                                                            \"CLM_02\": \"88.00\",\n                                                            \"CLM_05\": {\n                                                                \"CLM_05_01\": \"11\",\n                                                                \"CLM_05_02\": \"B\",\n                                                                \"CLM_05_03\": \"1\"\n                                                            },\n                                                            \"CLM_06\": \"Y\",\n                                                            \"CLM_07\": \"A\",\n                                                            \"CLM_08\": \"Y\",\n                                                            \"CLM_09\": \"I\"\n                                                        },\n                                                        {\n                                                            \"HI_01\": {\n                                                                \"HI_01_01\": \"ABK\",\n                                                                \"HI_01_02\": \"R101\"\n                                                            }\n                                                        }\n                                                    ]\n                                                },\n                                                {\n                                                    \"NM1_BillingProviderName_2-2010AA_loop\": [\n                                                        {\n                                                            \"NM1_01\": \"82\",\n                                                            \"NM1_02\": \"1\",\n                                                            \"NM1_03\": \"ADAMS\",\n                                                            \"NM1_04\": \"ROBERT\",\n                                                            \"NM1_08\": \"XX\",\n                                                            \"NM1_09\": \"2222222222\"\n                                                        },\n                                                        {\n                                                            \"LX_01\": \"1\"\n                                                        },\n                                                        {\n                                                            \"SV1_01\": {\n                                                                \"SV1_01_01\": \"HC\",\n                                                                \"SV1_01_02\": \"87070\"\n                                                            },\n                                                            \"SV1_02\": \"88\",\n                                                            \"SV1_03\": \"UN\",\n                                                            \"SV1_04\": \"1\",\n                                                            \"SV1_07\": {\n                                                                \"SV1_07_01\": \"1\"\n                                                            }\n                                                        },\n                                                        {\n                                                            \"DTP_01\": \"472\",\n                                                            \"DTP_02\": \"D8\",\n                                                            \"DTP_03\": \"20260512\"\n                                                        },\n                                                        {\n                                                            \"CLM_01\": \"CLAIM0004\",\n                                                            \"CLM_02\": \"315.00\",\n                                                            \"CLM_05\": {\n                                                                \"CLM_05_01\": \"11\",\n                                                                \"CLM_05_02\": \"B\",\n                                                                \"CLM_05_03\": \"1\"\n                                                            },\n                                                            \"CLM_06\": \"Y\",\n                                                            \"CLM_07\": \"A\",\n                                                            \"CLM_08\": \"Y\",\n                                                            \"CLM_09\": \"I\"\n                                                        },\n                                                        {\n                                                            \"HI_01\": {\n                                                                \"HI_01_01\": \"ABK\",\n                                                                \"HI_01_02\": \"E119\"\n                                                            }\n                                                        }\n                                                    ]\n                                                },\n                                                {\n                                                    \"NM1_BillingProviderName_2-2010AA_loop\": [\n                                                        {\n                                                            \"NM1_01\": \"82\",\n                                                            \"NM1_02\": \"1\",\n                                                            \"NM1_03\": \"ADAMS\",\n                                                            \"NM1_04\": \"ROBERT\",\n                                                            \"NM1_08\": \"XX\",\n                                                            \"NM1_09\": \"2222222222\"\n                                                        },\n                                                        {\n                                                            \"LX_01\": \"1\"\n                                                        },\n                                                        {\n                                                            \"SV1_01\": {\n                                                                \"SV1_01_01\": \"HC\",\n                                                                \"SV1_01_02\": \"99214\"\n                                                            },\n                                                            \"SV1_02\": \"150\",\n                                                            \"SV1_03\": \"UN\",\n                                                            \"SV1_04\": \"1\",\n                                                            \"SV1_07\": {\n                                                                \"SV1_07_01\": \"1\"\n                                                            }\n                                                        },\n                                                        {\n                                                            \"SV1_01\": {\n                                                                \"SV1_01_01\": \"HC\",\n                                                                \"SV1_01_02\": \"80053\"\n                                                            },\n                                                            \"SV1_02\": \"165\",\n                                                            \"SV1_03\": \"UN\",\n                                                            \"SV1_04\": \"1\",\n                                                            \"SV1_07\": {\n                                                                \"SV1_07_01\": \"1\"\n                                                            }\n                                                        },\n                                                        {\n                                                            \"DTP_01\": \"472\",\n                                                            \"DTP_02\": \"D8\",\n                                                            \"DTP_03\": \"20260512\"\n                                                        }\n                                                    ]\n                                                }\n                                            ]\n                                        }\n                                    ]\n                                }\n                            ]\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transformToEdi",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transformToEdi"
+              ]
+            },
+            "description": "<img src=\"https://content.pstmn.io/0cb86e33-3dca-4f3c-8c84-99d99f34e719/bG9nby5wbmc=\" alt=\"EDi%20to%20JSON\" height=\"101\" width=\"100\">"
+          },
+          "response": []
+        },
+        {
+          "name": "Acknowledge 837 with 999",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Content is EDI\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\"))",
+                  "        .to.include(\"text/plain\");",
+                  "});",
+                  "",
+                  "pm.test(\"Body is not empty\", function () {",
+                  "    pm.expect(pm.response.text().length).to.be.above(0);",
+                  "});",
+                  "",
+                  "pm.test(\"Response ISA..\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"ISA\");",
+                  "});",
+                  "",
+                  "pm.test(\"Response ST*855\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"ST*999*\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "ISA*00*          *00*          *ZZ*SENDERID       *ZZ*RECEIVERID     *260513*0715*^*00501*000000001*0*T*:~\nGS*HC*SENDERID*RECEIVERID*20260513*0715*1*X*005010X222A1~\nST*837*0001*005010X222A1~\nBHT*0019*00*BATCH1001*20260513*0715*CH~\nNM1*41*2*SAMPLE BILLING SERVICE*****46*123456789~\nPER*IC*EDI SUPPORT*TE*8005551212~\nNM1*40*2*SAMPLE PAYER*****46*999999999~\nHL*1**20*1~\nNM1*85*2*SAMPLE CLINIC*****XX*1234567893~\nN3*100 MAIN STREET~\nN4*NASHVILLE*TN*37201~\nREF*EI*123456789~\nHL*2*1*22*0~\nSBR*P*18*******CI~\nNM1*IL*1*DOE*JOHN****MI*ABC12345~\nN3*200 OAK AVENUE~\nN4*NASHVILLE*TN*37202~\nDMG*D8*19800101*M~\nCLM*CLAIM0001*125.00***11:B:1*Y*A*Y*I~\nHI*ABK:J1099~\nNM1*82*1*SMITH*JANE****XX*1111111111~\nLX*1~\nSV1*HC:99213*75*UN*1***1~\nDTP*472*D8*20260510~\nCLM*CLAIM0002*240.00***11:B:1*Y*A*Y*I~\nHI*ABK:M545~\nNM1*82*1*SMITH*JANE****XX*1111111111~\nLX*1~\nSV1*HC:93000*240*UN*1***1~\nDTP*472*D8*20260511~\nSE*29*0001~\nST*837*0002*005010X222A1~\nBHT*0019*00*BATCH1002*20260513*0720*CH~\nNM1*41*2*SAMPLE BILLING SERVICE*****46*123456789~\nPER*IC*EDI SUPPORT*TE*8005551212~\nNM1*40*2*SAMPLE PAYER*****46*999999999~\nHL*1**20*1~\nNM1*85*2*SAMPLE CLINIC*****XX*1234567893~\nN3*100 MAIN STREET~\nN4*NASHVILLE*TN*37201~\nREF*EI*123456789~\nHL*2*1*22*0~\nSBR*P*18*******CI~\nNM1*IL*1*DOE*JANE****MI*XYZ67890~\nN3*500 MAPLE DRIVE~\nN4*FRANKLIN*TN*37064~\nDMG*D8*19751212*F~\nCLM*CLAIM0003*88.00***11:B:1*Y*A*Y*I~\nHI*ABK:R101~\nNM1*82*1*ADAMS*ROBERT****XX*2222222222~\nLX*1~\nSV1*HC:87070*88*UN*1***1~\nDTP*472*D8*20260512~\nCLM*CLAIM0004*315.00***11:B:1*Y*A*Y*I~\nHI*ABK:E119~\nNM1*82*1*ADAMS*ROBERT****XX*2222222222~\nLX*1~\nSV1*HC:99214*150*UN*1***1~\nSV1*HC:80053*165*UN*1***1~\nDTP*472*D8*20260512~\nSE*30*0002~\nGE*2*1~\nIEA*1*000000001~",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/acknowledge?ack=999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "acknowledge"
+              ],
+              "query": [
+                {
+                  "key": "ack",
+                  "value": "999"
+                }
+              ]
+            },
+            "description": "<img src=\"https://content.pstmn.io/0cb86e33-3dca-4f3c-8c84-99d99f34e719/bG9nby5wbmc=\" alt=\"EDi%20to%20JSON\" height=\"101\" width=\"100\">"
+          },
+          "response": []
+        },
+        {
+          "name": "Validate 837 (Enterprise Edition)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 403\", function () {",
+                  "    pm.response.to.have.status(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Not in Community Edition\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"not included in the Community Edition\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "ISA*00*          *00*          *ZZ*SENDERID       *ZZ*RECEIVERID     *260513*0715*^*00501*000000001*0*T*:~\nGS*HC*SENDERID*RECEIVERID*20260513*0715*1*X*005010X222A1~\nST*837*0001*005010X222A1~\nBHT*0019*00*BATCH1001*20260513*0715*CH~\nNM1*41*2*SAMPLE BILLING SERVICE*****46*123456789~\nPER*IC*EDI SUPPORT*TE*8005551212~\nNM1*40*2*SAMPLE PAYER*****46*999999999~\nHL*1**20*1~\nNM1*85*2*SAMPLE CLINIC*****XX*1234567893~\nN3*100 MAIN STREET~\nN4*NASHVILLE*TN*37201~\nREF*EI*123456789~\nHL*2*1*22*0~\nSBR*P*18*******CI~\nNM1*IL*1*DOE*JOHN****MI*ABC12345~\nN3*200 OAK AVENUE~\nN4*NASHVILLE*TN*37202~\nDMG*D8*19800101*M~\nCLM*CLAIM0001*125.00***11:B:1*Y*A*Y*I~\nHI*ABK:J1099~\nNM1*82*1*SMITH*JANE****XX*1111111111~\nLX*1~\nSV1*HC:99213*75*UN*1***1~\nDTP*472*D8*20260510~\nCLM*CLAIM0002*240.00***11:B:1*Y*A*Y*I~\nHI*ABK:M545~\nNM1*82*1*SMITH*JANE****XX*1111111111~\nLX*1~\nSV1*HC:93000*240*UN*1***1~\nDTP*472*D8*20260511~\nSE*29*0001~\nST*837*0002*005010X222A1~\nBHT*0019*00*BATCH1002*20260513*0720*CH~\nNM1*41*2*SAMPLE BILLING SERVICE*****46*123456789~\nPER*IC*EDI SUPPORT*TE*8005551212~\nNM1*40*2*SAMPLE PAYER*****46*999999999~\nHL*1**20*1~\nNM1*85*2*SAMPLE CLINIC*****XX*1234567893~\nN3*100 MAIN STREET~\nN4*NASHVILLE*TN*37201~\nREF*EI*123456789~\nHL*2*1*22*0~\nSBR*P*18*******CI~\nNM1*IL*1*DOE*JANE****MI*XYZ67890~\nN3*500 MAPLE DRIVE~\nN4*FRANKLIN*TN*37064~\nDMG*D8*19751212*F~\nCLM*CLAIM0003*88.00***11:B:1*Y*A*Y*I~\nHI*ABK:R101~\nNM1*82*1*ADAMS*ROBERT****XX*2222222222~\nLX*1~\nSV1*HC:87070*88*UN*1***1~\nDTP*472*D8*20260512~\nCLM*CLAIM0004*315.00***11:B:1*Y*A*Y*I~\nHI*ABK:E119~\nNM1*82*1*ADAMS*ROBERT****XX*2222222222~\nLX*1~\nSV1*HC:99214*150*UN*1***1~\nSV1*HC:80053*165*UN*1***1~\nDTP*472*D8*20260512~\nSE*30*0002~\nGE*2*1~\nIEA*1*000000001~",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/validate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "validate"
+              ]
+            },
+            "description": "<img src=\"https://content.pstmn.io/0cb86e33-3dca-4f3c-8c84-99d99f34e719/bG9nby5wbmc=\" alt=\"EDi%20to%20JSON\" height=\"101\" width=\"100\">"
+          },
+          "response": []
+        },
+        {
+          "name": "Respond to 837 with 277CA",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Content is EDI\", function () {",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\"))",
+                  "        .to.include(\"text/plain\");",
+                  "});",
+                  "",
+                  "pm.test(\"Body is not empty\", function () {",
+                  "    pm.expect(pm.response.text().length).to.be.above(0);",
+                  "});",
+                  "",
+                  "pm.test(\"Response ISA..\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"ISA\");",
+                  "});",
+                  "",
+                  "pm.test(\"Response ST*277\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"ST*277*\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "ISA*00*          *00*          *ZZ*SENDER01       *ZZ*RECEIVER01     *260616*1200*^*00501*000000001*0*T*:~\nGS*HC*SENDER01*RECEIVER01*20260616*1200*1*X*005010X222A1~\nST*837*0001*005010X222A1~\n\nBHT*0019*00*BATCH001*20260616*1200*CH~\n\nNM1*41*2*FICTIONAL BILLING SERVICE*****46*SENDERCODE~\nPER*IC*EDI SUPPORT*TE*6155551000~\nNM1*40*2*TEST PAYER*****46*RECEIVERCODE~\n\nHL*1**20*1~\nPRV*BI*PXC*207Q00000X~\nNM1*85*2*ACME FAMILY PRACTICE*****XX*1234567893~\nN3*100 CLINIC WAY~\nN4*NASHVILLE*TN*37201~\nREF*EI*123456789~\n\nHL*2*1*22*0~\nSBR*P*18*******CI~\nNM1*IL*1*SMITH*JOHN****MI*JS10001~\nN3*101 OAK STREET~\nN4*NASHVILLE*TN*37215~\nDMG*D8*19800515*M~\nNM1*PR*2*TEST PAYER*****PI*99999~\n\nCLM*CLM1001*125.00***11:B:1*Y*A*Y*Y~\nDTP*434*RD8*20260501-20260501~\nHI*ABK:J0190~\nNM1*82*1*ADAMS*MARY****XX*1111111111~\nPRV*PE*PXC*207Q00000X~\nLX*1~\nSV1*HC:99213*125.00*UN*1***1~\nDTP*472*D8*20260501~\n\nCLM*CLM1002*200.00***11:B:1*Y*A*Y*Y~\nDTP*434*RD8*20260515-20260515~\nHI*ABK:M545~\nNM1*82*1*ADAMS*MARY****XX*1111111111~\nPRV*PE*PXC*207Q00000X~\nLX*1~\nSV1*HC:99214*200.00*UN*1***1~\nDTP*472*D8*20260515~\n\nHL*3*1*22*0~\nSBR*P*18*******CI~\nNM1*IL*1*JONES*SARAH****MI*SJ20001~\nN3*202 MAPLE DRIVE~\nN4*FRANKLIN*TN*37064~\nDMG*D8*19781122*F~\nNM1*PR*2*TEST PAYER*****PI*99999~\n\nCLM*CLM2001*350.00***11:B:1*Y*A*Y*Y~\nDTP*434*RD8*20260520-20260520~\nHI*ABK:E119~\nNM1*82*1*BAKER*ROBERT****XX*2222222222~\nPRV*PE*PXC*207R00000X~\nLX*1~\nSV1*HC:99203*150.00*UN*1***1~\nDTP*472*D8*20260520~\nLX*2~\nSV1*HC:83036*200.00*UN*1***1~\nDTP*472*D8*20260520~\n\nHL*4*1*22*0~\nSBR*P*18*******CI~\nNM1*IL*1*BROWN*DAVID****MI*DB30001~\nN3*303 CEDAR LANE~\nN4*MURFREESBORO*TN*37130~\nDMG*D8*19920211*M~\nNM1*PR*2*TEST PAYER*****PI*99999~\n\nCLM*CLM3001*175.00***11:B:1*Y*A*Y*Y~\nDTP*434*RD8*20260525-20260525~\nHI*ABK:S93401A~\nNM1*82*1*ADAMS*MARY****XX*1111111111~\nPRV*PE*PXC*207Q00000X~\nLX*1~\nSV1*HC:99212*75.00*UN*1***1~\nDTP*472*D8*20260525~\nLX*2~\nSV1*HC:12001*100.00*UN*1***1~\nDTP*472*D8*20260525~\n\nSE*71*0001~\nGE*1*1~\nIEA*1*000000001~",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/respondTo837/277",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "respondTo837",
+                "277"
+              ]
+            },
+            "description": "<img src=\"https://content.pstmn.io/0cb86e33-3dca-4f3c-8c84-99d99f34e719/bG9nby5wbmc=\" alt=\"EDi%20to%20JSON\" height=\"101\" width=\"100\">"
+          },
+          "response": []
+        },
+        {
+          "name": "Respond to 837+JSON with 277CA  (Enterprise Edition)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 403\", function () {",
+                  "    pm.response.to.have.status(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Not in Community Edition\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"not included in the Community Edition\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "ISA*00*          *00*          *ZZ*SENDER01       *ZZ*RECEIVER01     *260616*1200*^*00501*000000001*0*T*:~\nGS*HC*SENDER01*RECEIVER01*20260616*1200*1*X*005010X222A1~\nST*837*0001*005010X222A1~\n\nBHT*0019*00*BATCH001*20260616*1200*CH~\n\nNM1*41*2*FICTIONAL BILLING SERVICE*****46*SENDERCODE~\nPER*IC*EDI SUPPORT*TE*6155551000~\nNM1*40*2*TEST PAYER*****46*RECEIVERCODE~\n\nHL*1**20*1~\nPRV*BI*PXC*207Q00000X~\nNM1*85*2*ACME FAMILY PRACTICE*****XX*1234567893~\nN3*100 CLINIC WAY~\nN4*NASHVILLE*TN*37201~\nREF*EI*123456789~\n\nHL*2*1*22*0~\nSBR*P*18*******CI~\nNM1*IL*1*SMITH*JOHN****MI*JS10001~\nN3*101 OAK STREET~\nN4*NASHVILLE*TN*37215~\nDMG*D8*19800515*M~\nNM1*PR*2*TEST PAYER*****PI*99999~\n\nCLM*CLM1001*125.00***11:B:1*Y*A*Y*Y~\nDTP*434*RD8*20260501-20260501~\nHI*ABK:J0190~\nNM1*82*1*ADAMS*MARY****XX*1111111111~\nPRV*PE*PXC*207Q00000X~\nLX*1~\nSV1*HC:99213*125.00*UN*1***1~\nDTP*472*D8*20260501~\n\nCLM*CLM1002*200.00***11:B:1*Y*A*Y*Y~\nDTP*434*RD8*20260515-20260515~\nHI*ABK:M545~\nNM1*82*1*ADAMS*MARY****XX*1111111111~\nPRV*PE*PXC*207Q00000X~\nLX*1~\nSV1*HC:99214*200.00*UN*1***1~\nDTP*472*D8*20260515~\n\nHL*3*1*22*0~\nSBR*P*18*******CI~\nNM1*IL*1*JONES*SARAH****MI*SJ20001~\nN3*202 MAPLE DRIVE~\nN4*FRANKLIN*TN*37064~\nDMG*D8*19781122*F~\nNM1*PR*2*TEST PAYER*****PI*99999~\n\nCLM*CLM2001*350.00***11:B:1*Y*A*Y*Y~\nDTP*434*RD8*20260520-20260520~\nHI*ABK:E119~\nNM1*82*1*BAKER*ROBERT****XX*2222222222~\nPRV*PE*PXC*207R00000X~\nLX*1~\nSV1*HC:99203*150.00*UN*1***1~\nDTP*472*D8*20260520~\nLX*2~\nSV1*HC:83036*200.00*UN*1***1~\nDTP*472*D8*20260520~\n\nHL*4*1*22*0~\nSBR*P*18*******CI~\nNM1*IL*1*BROWN*DAVID****MI*DB30001~\nN3*303 CEDAR LANE~\nN4*MURFREESBORO*TN*37130~\nDMG*D8*19920211*M~\nNM1*PR*2*TEST PAYER*****PI*99999~\n\nCLM*CLM3001*175.00***11:B:1*Y*A*Y*Y~\nDTP*434*RD8*20260525-20260525~\nHI*ABK:S93401A~\nNM1*82*1*ADAMS*MARY****XX*1111111111~\nPRV*PE*PXC*207Q00000X~\nLX*1~\nSV1*HC:99212*75.00*UN*1***1~\nDTP*472*D8*20260525~\nLX*2~\nSV1*HC:12001*100.00*UN*1***1~\nDTP*472*D8*20260525~\n\nSE*71*0001~\nGE*1*1~\nIEA*1*000000001~",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/respondTo837/277?supplementalData=claimStatus.json",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "respondTo837",
+                "277"
+              ],
+              "query": [
+                {
+                  "key": "supplementalData",
+                  "value": "claimStatus.json"
+                }
+              ]
+            },
+            "description": "<img src=\"https://content.pstmn.io/0cb86e33-3dca-4f3c-8c84-99d99f34e719/bG9nby5wbmc=\" alt=\"EDi%20to%20JSON\" height=\"101\" width=\"100\">"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "EDIFACT",
+      "item": [
+        {
+          "name": "EDIFACT ORDERS to JSON",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response is JSON\", function () {",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "",
+                  "pm.test(\"Body is not empty\", function () {",
+                  "    pm.expect(pm.response.text().length).to.be.above(0);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "UNB+UNOC:3+SENDERID+RECEIVERID+230101:0900+000000001'\nUNH+1+ORDERS:D:96A:UN'\nBGM+220+PO123456+9'\nDTM+137:20230101:102'\nNAD+BY+5412345000013::9'\nNAD+SU+4012345000094::9'\nCUX+2:EUR:9'\nLIN+1++1234567890123:EN'\nPIA+1+ABC123:SA'\nIMD+F++:::Widget Model A'\nQTY+21:100'\nPRI+AAA:12.50'\nRFF+ON:PO-REF-01'\nDTM+2:20230115:102'\nLIN+2++9876543210987:EN'\nPIA+1+XYZ789:SA'\nIMD+F++:::Widget Model B'\nQTY+21:50'\nPRI+AAA:24.99'\nRFF+ON:PO-REF-02'\nDTM+2:20230120:102'\nUNS+S'\nCNT+2:2'\nUNT+23+1'\nUNZ+1+000000001'",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transformFromEdi",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transformFromEdi"
+              ]
+            },
+            "description": "<img src=\"https://content.pstmn.io/0cb86e33-3dca-4f3c-8c84-99d99f34e719/bG9nby5wbmc=\" alt=\"EDi%20to%20JSON\" height=\"101\" width=\"100\">"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Home Page",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is HTML\", function () {",
+              "    pm.expect(pm.response.headers.get(\"Content-Type\"))",
+              "        .to.include(\"text/html\");",
+              "});",
+              "",
+              "pm.test(\"Body is not empty\", function () {",
+              "    pm.expect(pm.response.text().length).to.be.above(0);",
+              "});",
+              "",
+              "pm.test(\"Title: BerryWave\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"<title>BerryWave\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Performance Metrics",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is HTML\", function () {",
+              "    pm.expect(pm.response.headers.get(\"Content-Type\"))",
+              "        .to.include(\"text/html\");",
+              "});",
+              "",
+              "pm.test(\"Body is not empty\", function () {",
+              "    pm.expect(pm.response.text().length).to.be.above(0);",
+              "});",
+              "",
+              "pm.test(\"Title: BerryWave\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"<title>Metrics\");",
+              "});",
+              "",
+              "pm.test(\"Heading\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"Operational and Performance Metrics\");",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/metrics",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "metrics"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "List EDI Models",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is HTML\", function () {",
+              "    pm.expect(pm.response.headers.get(\"Content-Type\"))",
+              "        .to.include(\"text/html\");",
+              "});",
+              "",
+              "pm.test(\"Body is not empty\", function () {",
+              "    pm.expect(pm.response.text().length).to.be.above(0);",
+              "});",
+              "",
+              "pm.test(\"Title: EDI Models\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"<title>EDI Models\");",
+              "});",
+              "",
+              "pm.test(\"837\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"837\");",
+              "});",
+              "",
+              "pm.test(\"Health Care Claim X222A1 \", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"Health Care Claim X222A1 (Professional)\");",
+              "});",
+              "",
+              "pm.test(\"850\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"850\");",
+              "});",
+              "",
+              "pm.test(\"Purchase Order\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"Purchase Order\");",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/listModels",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "listModels"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "OpenAPI (Swagger) Documentation",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is HTML\", function () {",
+              "    pm.expect(pm.response.headers.get(\"Content-Type\"))",
+              "        .to.include(\"text/html\");",
+              "});",
+              "",
+              "pm.test(\"Body is not empty\", function () {",
+              "    pm.expect(pm.response.text().length).to.be.above(0);",
+              "});",
+              "",
+              "pm.test(\"Title: Swagger UI\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"<title>Swagger UI\");",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/swagger-ui/index.html",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "swagger-ui",
+            "index.html"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
