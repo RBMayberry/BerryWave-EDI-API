@@ -1,51 +1,49 @@
 ![Banner image](images/github-header-banner.png)
+
 ![Java Version](https://img.shields.io/badge/Java-21%2B-orange)
-![License](https://img.shields.io/badge/License-Community-blue)
+![License](https://img.shields.io/badge/Edition-Community%20%2F%20Enterprise-blue)
 ![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Windows-lightgrey)
 
-[Quick Start](#quick-start) | [Technical Notes](#technical-notes)
+[Quick Start](#quick-start) | [Features](#key-features) | [Community vs Enterprise](#community-and-enterprise-editions)
 
-BerryWave Software delivers a robust REST API that brings enterprise-grade EDI processing
-directly into your environment — no cloud uploads, no data exposure, no limits.
+BerryWave Software delivers a robust REST API that brings enterprise-grade EDI processing directly into your environment — no cloud uploads, no data exposure, no limits.
 
-<https://www.berrywave-edi.com/>
+🌐 **Website:** [https://www.berrywave-edi.com/](https://www.berrywave-edi.com/)
 
+---
 
 ### Seamless EDI Integration
 
-Easily integrate with your existing orchestration or automation tools to handle complex EDI workflows
-for X12 and EDIFACT standards.
+Easily integrate with your existing orchestration or automation tools to handle complex EDI workflows for X12 and EDIFACT standards.
 
 ### Key Features
 
-* Convert EDI to JSON or XML — and back again
-* Split multi-transaction EDI files into individual documents
-* Validate compliance and detect errors efficiently
-* Acknowledge receipt and compliance results
+* **Bi-Directional Conversion:** Convert EDI to JSON or XML — and back again
+* **Document Splitting:** Split multi-transaction EDI files into individual documents
+* **Compliance & Validation:** Validate syntax and detect compliance errors efficiently
+* **Automated Acknowledgments:** Generate 997, 999, and CONTRL acknowledgments seamlessly
 
 ### Proven in Production
 
-While the API is new, the EDI engine behind it has powered mission-critical systems across industries including:
+While the API is new, the core EDI engine powering it has driven mission-critical operations across:
 
-* Healthcare
-* Retail
-* Supply Chain
-* Finance
+* **Healthcare** (Claims, Payments, Eligibility)
+* **Retail & Supply Chain** (Purchase Orders, Invoices, Ship Notices)
+* **Finance & Logistics**
 
 ### On-Premise. Secure. Scalable.
 
-* Quick, one-step installation on Linux, Windows, or macOS
-* Requires only a Java JRE — no extra dependencies
-* Keeps all data within your secured environment
-* Eliminates large file transfers to and from the cloud
-* Scales effortlessly with your business volume
+* **Simple Setup:** Quick, one-step execution on Linux, Windows, or macOS
+* **Zero Bloat:** Requires only a standard Java JRE — no external DB or messaging dependencies
+* **Data Ownership:** Keeps sensitive EDI data strictly inside your firewall
+* **High Throughput:** Eliminates cloud network latency and large payload transfers
+* **Scalable:** Built to handle high-volume enterprise workloads
+
+---
 
 ### Community and Enterprise Editions
 
-The API for EDI is available both as the Community Edition,
-freely available for commercial use with features summarized in the table below,
-and the full-featured Enterprise Edition
-available with license from BerryWave Software.
+The API for EDI is available both as a **Community Edition** (freely available for commercial use) and a full-featured **Enterprise Edition** licensed by BerryWave Software.
 
 |                     | Feature                                                                                               | Community Edition | Enterprise Edition |
 |:--------------------|:------------------------------------------------------------------------------------------------------|:-----------------:|:------------------:|
@@ -73,59 +71,67 @@ available with license from BerryWave Software.
 |                     | Compliance report                                                                                     |         ❌         |         ✅          |
 | **Split EDI**       | Split multi-transactional EDI into a series of single-transaction EDI files                           |         ❌         |         ✅          |
 
-† Community Edition supports this feature for selected document types:
+> † *Community Edition supports segment loop representation for selected document types: 837P Healthcare Claims (v005010) and 850 Purchase Orders (v004010, 004030, 004060, 005010).*
 
-- **837P Healthcare Claim, Professional** (version 005010)
-- **850 Purchase Order** (commonly deployed versions 004010, 004030, 004060, and 005010)
-
-Enterprise Edition supports all document types.
+---
 
 ## Quick Start
 
-### Download the Community Edition
+### 1. Download the Executable
 
-Use the Releases section for this project to select and download the runnable jar asset for the latest release.
-For example, `berrywave.api-1.1.6.jar`.
-You may use the SHA-256 checksum to confirm that your downloaded copy is complete and unchanged.
+Download the latest runnable `.jar` file from the [Releases](https://github.com/RBMayberry/BerryWave-EDI-API/releases) section (e.g., `berrywave.api-1.1.6.jar`). You can verify its integrity using the provided SHA-256 checksum.
 
-### Running the Application
+### 2. Run the Application
 
-**Prerequisite:** Java 21 or later. Verify with:
+The application can be started from the command line as shown, and of course started in a script suitable for your platform and environment.
+Java 21+ is the only pre-requisite. 
 
 ```sh
 java --version
-```
-Start the application with:
-
-```sh 
 java -jar berrywave.api-1.1.6.jar
-````
-
-### Configuring the Port
-The application creates an `application.yml` file in the current directory if one does not already exist.
-By default, the application listens on port 8080.
-To use a different port, edit application.yml.
-
-### Home page
-
-Visit the home page with your browser:
-
 ```
+
+
+### 3. Configuring the Port
+   On startup, the application creates a default application.yml file in the current directory listening on port 8080. To use a custom port, modify application.yml.
+
+### 4. Quick Example: EDI to JSON Translation
+
+Once the service is running, open a new terminal window and run this command to convert an inline 850 Purchase Order into JSON:
+
+```bash
+curl -X POST "http://localhost:8080/berrywave/v1/transformFromEdi" \
+  -H "Content-Type: application/edi" \
+  --data-binary @- << 'EOF'
+ISA*00*          *00*          *ZZ*SENDERID       *ZZ*RECEIVERID     *230501*0930*U*00401*000000001*0*P*>
+GS*PO*SENDERID*RECEIVERID*20230501*0930*1*X*004010
+ST*850*0001
+BEG*00*SA*PO1234567**20230501*610385388
+CUR*BY*USD
+REF*DP*120
+ITD*14*3*2**45**46
+DTM*001*20230510
+N1*BY*Buyer Company*9*123456789
+N3*100 Main Street
+N4*Anytown*CA*90210
+N1*ST*Supplier Company*9*987654321
+N3*500 Industrial Park
+N4*Othertown*TX*75001
+PO1*1*100*EA*12.75*CB*12345-01*MG*AcmeWidget
+PID*F****Acme Widget Model A
+QTY*21*100
+DTM*002*20230515
+CTT*1
+SE*18*0001
+GE*1*1
+IEA*1*000000001
+EOF
+```
+
+### 5. Home Page & Swagger Docs
 http://localhost:8080/berrywave/v1
-```
 
-The home page confirms the edition (Community or Enterprise) and license status
-and provides quick links to key features and documentation.
-
-### API documentation
-
-```
 http://localhost:8080/berrywave/v1/api
-```
 
-### Postman Collection
-
-A Postman collection is provided in the project so that you can quickly import the collection
-and use Postman to execute a series of requests to the API.
-
-
+### 6. Postman Collection
+   Import the pre-configured Postman collection located in the /postman directory to immediately test API endpoints against sample EDI data.
