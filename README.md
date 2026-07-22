@@ -1,8 +1,46 @@
 ![Banner image](images/github-header-banner.png)
-[Quick Start](#quick-start) |
+![Java Version](https://img.shields.io/badge/Java-21%2B-orange)
+![License](https://img.shields.io/badge/License-Community-blue)
+![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Windows-lightgrey)
+
+[Quick Start](#quick-start) | [Technical Notes](#technical-notes)
+
+BerryWave Software delivers a robust REST API that brings enterprise-grade EDI processing
+directly into your environment — no cloud uploads, no data exposure, no limits.
+
+<https://www.berrywave-edi.com/>
 
 
-### API Features
+### Seamless EDI Integration
+
+Easily integrate with your existing orchestration or automation tools to handle complex EDI workflows
+for X12 and EDIFACT standards.
+
+### Key Features
+
+* Convert EDI to JSON or XML — and back again
+* Split multi-transaction EDI files into individual documents
+* Validate compliance and detect errors efficiently
+* Acknowledge receipt and compliance results
+
+### Proven in Production
+
+While the API is new, the EDI engine behind it has powered mission-critical systems across industries including:
+
+* Healthcare
+* Retail
+* Supply Chain
+* Finance
+
+### On-Premise. Secure. Scalable.
+
+* Quick, one-step installation on Linux, Windows, or macOS
+* Requires only a Java JRE — no extra dependencies
+* Keeps all data within your secured environment
+* Eliminates large file transfers to and from the cloud
+* Scales effortlessly with your business volume
+
+### Community and Enterprise Editions
 
 The API for EDI is available both as the Community Edition,
 freely available for commercial use with features summarized in the table below,
@@ -41,3 +79,53 @@ available with license from BerryWave Software.
 - **850 Purchase Order** (commonly deployed versions 004010, 004030, 004060, and 005010)
 
 Enterprise Edition supports all document types.
+
+## Quick Start
+
+### Download the Community Edition
+
+Use the Releases section for this project to select and download the runnable jar asset for the latest release.
+For example, `berrywave.api-1.1.6.jar`.
+You may use the SHA-256 checksum to confirm that your downloaded copy is complete and unchanged.
+
+### Running the Application
+
+**Prerequisite:** Java 21 or later. Verify with:
+
+```sh
+java --version
+```
+Start the application with:
+
+```sh 
+java -jar berrywave.api-1.1.6.jar
+````
+
+### Configuring the Port
+The application creates an `application.yml` file in the current directory if one does not already exist.
+By default, the application listens on port 8080.
+To use a different port, edit application.yml.
+
+### Home page
+
+Visit the home page with your browser:
+
+```
+http://localhost:8080/berrywave/v1
+```
+
+The home page confirms the edition (Community or Enterprise) and license status
+and provides quick links to key features and documentation.
+
+### API documentation
+
+```
+http://localhost:8080/berrywave/v1/api
+```
+
+### Postman Collection
+
+A Postman collection is provided in the project so that you can quickly import the collection
+and use Postman to execute a series of requests to the API.
+
+
