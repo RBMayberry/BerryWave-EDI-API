@@ -25,11 +25,11 @@
                   "    pm.response.to.be.json;",
                   "});",
                   "",
-                  "pm.test(\"Body is not empty\", function () {",
-                  "    pm.expect(pm.response.text().length).to.be.above(0);",
+                  "pm.test(\"Body is unformatted size\", function () {",
+                  "    pm.expect(pm.response.text().length).to.be.equal(1946);",
                   "});",
                   "",
-                  "pm.test(\"Response contains 1000A\", function () {",
+                  "pm.test(\"Response contains PO1234567\", function () {",
                   "    pm.expect(pm.response.text()).to.include(\"PO1234567\");",
                   "});"
                 ],
@@ -58,6 +58,66 @@
               ],
               "path": [
                 "transformFromEdi"
+              ]
+            },
+            "description": "<img src=\"https://content.pstmn.io/0cb86e33-3dca-4f3c-8c84-99d99f34e719/bG9nby5wbmc=\" alt=\"EDi%20to%20JSON\" height=\"101\" width=\"100\">"
+          },
+          "response": []
+        },
+        {
+          "name": "850 to JSON, formatted",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response is JSON\", function () {",
+                  "    pm.response.to.be.json;",
+                  "});",
+                  "",
+                  "pm.test(\"Body is formatted size\", function () {",
+                  "    pm.expect(pm.response.text().length).to.be.above(2500);",
+                  "});",
+                  "",
+                  "pm.test(\"Response contains PO1234567\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"PO1234567\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "ISA*00*          *00*          *ZZ*SENDERID       *ZZ*RECEIVERID     *230501*0930*U*00401*000000001*0*P*>\nGS*PO*SENDERID*RECEIVERID*20230501*0930*1*X*004010\nST*850*0001\nBEG*00*SA*PO1234567**20230501*610385388\nCUR*BY*USD\nREF*DP*120\nITD*14*3*2**45**46\nDTM*001*20230510\nN1*BY*Buyer Company*9*123456789\nN3*100 Main Street\nN4*Anytown*CA*90210\nN1*ST*Supplier Company*9*987654321\nN3*500 Industrial Park\nN4*Othertown*TX*75001\nPO1*1*100*EA*12.75*CB*12345-01*MG*AcmeWidget\nPID*F****Acme Widget Model A\nQTY*21*100\nDTM*002*20230515\nCTT*1\nSE*18*0001\nGE*1*1\nIEA*1*000000001",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transformFromEdi?formatted=true",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transformFromEdi"
+              ],
+              "query": [
+                {
+                  "key": "formatted",
+                  "value": "true"
+                }
               ]
             },
             "description": "<img src=\"https://content.pstmn.io/0cb86e33-3dca-4f3c-8c84-99d99f34e719/bG9nby5wbmc=\" alt=\"EDi%20to%20JSON\" height=\"101\" width=\"100\">"
