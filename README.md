@@ -83,7 +83,7 @@ v005010) and 850 Purchase Orders (v004010, 004030, 004060, 005010).*
 ### 1. Download the Executable
 
 Download the latest runnable `.jar` file from the [Releases](https://github.com/RBMayberry/BerryWave-EDI-API/releases)
-section (e.g., `berrywave.api-1.1.6.jar`). You can verify its integrity using the provided SHA-256 checksum.
+section (e.g., `berrywave.api-1.1.8.jar`). You can verify its integrity using the provided SHA-256 checksum.
 
 ### 2. Run the Application
 
@@ -93,7 +93,7 @@ Java 21+ is the only pre-requisite.
 
 ```sh
 java --version
-java -jar berrywave.api-1.1.6.jar
+java -jar berrywave.api-1.1.8.jar
 ```
 
 ### 3. Configuring the Port
@@ -137,9 +137,10 @@ EOF
 
 ### 5. Home Page & Swagger Docs
 
-http://localhost:8080/berrywave/v1
+[http://localhost:8080/berrywave/v1](http://localhost:8080/berrywave/v1)
 
-http://localhost:8080/berrywave/v1/api
+[http://localhost:8080/berrywave/v1/api](http://localhost:8080/berrywave/v1/api)
+
 
 ### 6. Postman Collection
 
